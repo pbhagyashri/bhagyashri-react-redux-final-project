@@ -1,3 +1,5 @@
+require 'Auth'
+
 class Api::UsersController < ApplicationController
 
   before_action :set_user, only: [:show, :edit, :update, :destroy]
@@ -14,7 +16,7 @@ class Api::UsersController < ApplicationController
     user = User.new(user_params)
 
     if user.save
-      render json: user
+      render json: {token: Auth.create_token(user)}
     else
       render json: {message: user.errors}, status: 400
     end
