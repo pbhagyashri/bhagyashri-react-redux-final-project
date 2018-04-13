@@ -2,7 +2,13 @@ class Api::ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
+    token = request.env["HTTP_AUTHORIZATION"]
+
+    if token && Auth.decode_token(token)
     render json: Project.all
+    else
+      render json: {error: {message: "You must be login"}}
+    end
   end
 
   def show
