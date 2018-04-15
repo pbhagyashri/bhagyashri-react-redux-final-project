@@ -27,3 +27,8 @@
   to { transform: rotate(360deg); }
 }
 
+.custom-container {
+  padding: 15px;
+  text-align: left;
+}
+
