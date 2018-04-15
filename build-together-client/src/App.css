@@ -38,13 +38,19 @@
   display: inline-block;
   margin-left: 10px;
   margin-top: 20px;
- 
+  text-decoration: none;
   border-radius: 6px;
   color: #6b7a8f;
   font-weight: 400;
 }
 
-.navbar-links:hover {
+.navbar-links:hover{
   text-decoration: none;
   color: #f7882f;
 }
+
+.navbar-links:visited, .navbar-links:active {
+  text-decoration: none;
+  
+}
+
