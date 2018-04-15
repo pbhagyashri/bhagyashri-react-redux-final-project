@@ -2,24 +2,29 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import './App.css';
-
+import Header from './components/Header'
 import Login from './containers/Login'
 
 class App extends Component {
   render() {
     return (
-      <Router>
-        <div className="App">
-          <header className="App-header">
-            <h1 className="App-title">Welcome to Build Together</h1>
-          </header>
-          <div className="App-intro">
+      
+      <div className="App">
+        <div className="App-intro">
+        <Router>
+          <div>
+            <header className="App-header">
+              <Header />
+            </header>  
             <Route path="/login" component={Login} />
           </div>
+        </Router>
         </div>
-      </Router>
+      </div>
+      
     );
   }
 }
 
 export default App;
+

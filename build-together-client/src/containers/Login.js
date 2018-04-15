@@ -1,6 +1,22 @@
 import React, { Component } from 'react';
 
 class Login extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      email: "",
+      password: ""
+    }
+  }
+
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
   render() {
     return (
       <div className="custom-container">
@@ -8,11 +24,22 @@ class Login extends Component {
         <div className="col-sm-4">
           <form>
             <div className="form-group">
+              
               <label>Email</label>
-              <input className="form-control" type="text" placeholder="please enter your email"/>
+              <input 
+              onChange={(event) => this.handleChange(event)} 
+              name="email"
+              className="form-control" 
+              type="text" placeholder="please enter your email"
+              />
 
               <label>Password</label>
-              <input className="form-control" type="text" placeholder="please enter your password"/>
+              <input 
+              onChange={(event) => this.handleChange(event)} 
+              name="password"
+              className="form-control" 
+              type="text" placeholder="please enter your password"
+              />
 
               <button type="submit" className="btn custom-btn">Submit</button>
             </div>
