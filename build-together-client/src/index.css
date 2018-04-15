@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Berkshire+Swash|Lato:100i,300,400');
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Lato', sans-serif;
+  background-color: #f5ede3;
+  color: #6b7a8f;
 }
