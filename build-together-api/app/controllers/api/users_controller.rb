@@ -5,7 +5,9 @@ class Api::UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   
   def index
+  
     render json: User.all
+    
   end
 
   def show

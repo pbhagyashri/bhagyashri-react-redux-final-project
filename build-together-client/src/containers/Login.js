@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { authenticate } from '../actions/auth_actions'
 
 class Login extends Component {
 
@@ -17,12 +21,17 @@ class Login extends Component {
     })
   }
 
+  handleOnLogin(event) {
+    event.preventDefault()
+    this.props.authenticate(this.state)
+  }
+
   render() {
     return (
       <div className="custom-container">
         <div className="col-sm-4"></div>
         <div className="col-sm-4">
-          <form>
+          <form onSubmit={(event) => this.handleOnLogin(event)}>
             <div className="form-group">
               
               <label>Email</label>
@@ -51,4 +60,16 @@ class Login extends Component {
   }
 }
 
-export default Login;
+function mapStateToProps(state) {
+  return {
+    token: state.token
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    authenticate: authenticate
+  }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
