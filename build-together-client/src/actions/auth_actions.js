@@ -1,4 +1,4 @@
-// const API_URL = "http://localhost:3001"
+const API_URL = "http://192.168.1.190:3001/api"
 
 function authRequest() {
   return {
@@ -11,7 +11,7 @@ export const authenticate = (credentials) => {
   return dispatch => {
       dispatch(authRequest())
     
-      return fetch("http://192.168.1.190:3001/api/login", {
+      return fetch(`${API_URL}/login`, {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify(credentials)
@@ -19,10 +19,10 @@ export const authenticate = (credentials) => {
           .then(res => res.json())
           .then((response) => {
         
-              const token = response;
+              const token = response["token"];
               localStorage.setItem('Token', token["token"]);
-              debugger
-              //return getUser(credentials)
+              
+              return getUser(token)
           })
           // .then((user) => {
           //     dispatch(authSuccess(user, localStorage.token))
@@ -35,27 +35,27 @@ export const authenticate = (credentials) => {
   }
 }
 
-// fetch("http://192.168.1.190:3001/api/users", {
-//   method: "GET",
-//   headers: {'Content-Type': 'application/json'}
-// })
-// .then(res => res.json())
-// .then((response) => console.log(response))
-// .catch(errors => console.log(errors))
-
-// fetch("http://192.168.1.190:3001/api/login", {
-//   method: "POST",
-//   headers: {'Content-Type': 'application/json'},
-//   body: JSON.stringify({
-
-//     "email": "bman@gmail.com",
-//     "password_digest": "cape"
-
-//   })
-// })
-// .then(res => res.json())
-// .then((response) => console.log(response))
-// .catch(errors => console.log(errors))
+export const getUser = (token) => {
+  
+  return fetch("http://192.168.1.190:3001/api/find_user", {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({token: token})
+    
+  })
+  .then((res) => res.json())
+  .then((response) => {
+    
+    console.log("Response", response)
+  })
+}
 
 
-
+// fetch("http://192.168.1.190:3001/api/projects", {
+//           method: 'POST',
+//           headers: {'Authorization': localStorage.Token},
+//       })
+//           .then(res => res.json())
+//           .then((response) => {
+//             console.log(response)
+//           })
