@@ -7,7 +7,6 @@ function authRequest() {
 }
 
 function authSuccess(user) {
-  debugger
   return {
     type: 'USER_AUTHENTICATED',
     user
