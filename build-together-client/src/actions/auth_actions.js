@@ -7,6 +7,7 @@ function authRequest() {
 }
 
 function authSuccess(user) {
+  debugger
   return {
     type: 'USER_AUTHENTICATED',
     user
@@ -31,9 +32,9 @@ export const authenticate = (credentials) => {
               
               return getUser(token)
           })
-          // .then((user) => {
-          //     dispatch(authSuccess(user, localStorage.token))
-          // })
+          .then((user) => {
+              dispatch(authSuccess(user, localStorage.token))
+          })
           .catch((errors) => {
               console.log(errors);
               // dispatch(authFailure(errors))
@@ -52,7 +53,7 @@ export const getUser = (token) => {
   })
   .then((res) => res.json())
   .then((response) => {
-    debugger
+    return response
   })
 }
 

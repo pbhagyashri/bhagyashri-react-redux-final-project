@@ -13,7 +13,10 @@ class Api::SessionsController < ApplicationController
 
   def find_user
     returned_user = Auth.decode_token(params[:token])
-    render json: returned_user
+  
+    user_hash = returned_user[0]
+    
+    render json: {name: user_hash["user"]["name"], username: user_hash["user"]["username"], email: user_hash["user"]["email"]}
   end
 
   def logout
