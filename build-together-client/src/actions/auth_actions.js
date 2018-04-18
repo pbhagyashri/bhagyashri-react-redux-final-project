@@ -6,6 +6,13 @@ function authRequest() {
   }
 }
 
+function authSuccess(user) {
+  return {
+    type: 'USER_AUTHENTICATED',
+    user
+  }
+}
+
 export const authenticate = (credentials) => {
 
   return dispatch => {
@@ -45,8 +52,7 @@ export const getUser = (token) => {
   })
   .then((res) => res.json())
   .then((response) => {
-    
-    console.log("Response", response)
+    debugger
   })
 }
 
