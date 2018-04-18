@@ -23,7 +23,13 @@ class Login extends Component {
 
   handleOnLogin(event) {
     event.preventDefault()
-    this.props.authenticate(this.state)
+
+    if(this.props.authenticate(this.state)) {
+      console.log("true")
+    } else {
+      console.log("false")
+    }
+    
   }
 
   render() {

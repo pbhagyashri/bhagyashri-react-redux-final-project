@@ -1,15 +1,23 @@
 const API_URL = "http://192.168.1.190:3001/api"
 
-function authRequest() {
+const authRequest = () => {
   return {
-    type: 'AUTHENTICATE_USER'
+    type: 'AUTHENTICATE_USER',
   }
 }
 
-function authSuccess(user) {
+const authSuccess = (user, token) => {
   return {
     type: 'USER_AUTHENTICATED',
-    user
+    user: user
+  }
+}
+
+const authFailure = (errors) => {
+  return {
+    type: 'AUTH_FAILURE',
+    errors: errors
+   
   }
 }
 
@@ -27,17 +35,19 @@ export const authenticate = (credentials) => {
           .then((response) => {
         
               const token = response["token"];
-              localStorage.setItem('Token', token["token"]);
-              
+              localStorage.setItem('Token', token);
               return getUser(token)
           })
           .then((user) => {
-              dispatch(authSuccess(user, localStorage.token))
+            debugger
+            let token = user.returned_token.token
+            dispatch(authSuccess(user, token))
+            return token
           })
           .catch((errors) => {
               console.log(errors);
-              // dispatch(authFailure(errors))
-              // localStorage.clear()
+              dispatch(authFailure(errors))
+              localStorage.clear()
           })
   }
 }
@@ -48,7 +58,6 @@ export const getUser = (token) => {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({token: token})
-    
   })
   .then((res) => res.json())
   .then((response) => {
