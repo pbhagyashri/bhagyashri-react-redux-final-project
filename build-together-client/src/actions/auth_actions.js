@@ -25,6 +25,12 @@ const authFailure = (errors) => {
   }
 }
 
+export const signupUser = (credentials) => {
+  
+}
+
+
+
 export const authenticate = (credentials) => {
 
   return dispatch => {
@@ -84,7 +90,6 @@ export const getUser = (token) => {
     localStorage.clear()
   })
 }
-
 
 // fetch("http://192.168.1.190:3001/api/projects", {
 //           method: 'POST',

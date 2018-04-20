@@ -5,9 +5,10 @@ import Project from './components/project'
 import './App.css';
 import Header from './components/Header'
 import Login from './containers/Login'
+import Signup from './containers/Signup'
 import Home from './components/Home'
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
+
 
 class App extends Component {
   render() {
@@ -22,7 +23,8 @@ class App extends Component {
               <Header />
             </header>  
             <Route path="/login" component={Login} />
-            <Project store={this.props.store}/>
+            <Route path="/signup" component={Signup} />
+            {/* <Project store={this.props.store}/> */}
           </div>
         </Router>
         </div>
@@ -31,12 +33,13 @@ class App extends Component {
     );
   }
 }
-const mapStateToProps = (state) => {
-  return {  
-    user: state.auth
-  }
-}
+// const mapStateToProps = (state) => {
+//   return {  
+//     user: state.auth
+//   }
+// }
 
-export default App = connect(mapStateToProps, {})(App);
+// export default App = connect(mapStateToProps, {})(App);
 
+export default Signup
 
