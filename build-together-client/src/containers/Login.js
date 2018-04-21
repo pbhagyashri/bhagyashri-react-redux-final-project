@@ -46,7 +46,7 @@ class Login extends Component {
     
 
     return (
-      <div className="custom-container">
+      <div className="custom-container row">
         <div className="col-sm-4"></div>
         <div className="col-sm-4">
           <form onSubmit={(event) => this.handleOnLogin(event)}>

@@ -8,6 +8,7 @@ import Login from './containers/Login'
 import Signup from './containers/Signup'
 import Home from './components/Home'
 import { connect } from 'react-redux';
+import project from './components/project';
 
 
 class App extends Component {
@@ -24,7 +25,6 @@ class App extends Component {
             </header>  
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
-            {/* <Project store={this.props.store}/> */}
           </div>
         </Router>
         </div>
@@ -33,13 +33,13 @@ class App extends Component {
     );
   }
 }
-// const mapStateToProps = (state) => {
-//   return {  
-//     user: state.auth
-//   }
-// }
+const mapStateToProps = (state) => {
+  return {  
+    user: state.auth
+  }
+}
 
-// export default App = connect(mapStateToProps, {})(App);
+export default App = connect(mapStateToProps, {})(App);
 
-export default Signup
+//export default Signup
 

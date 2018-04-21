@@ -15,10 +15,11 @@ class Api::UsersController < ApplicationController
   end
 
   def signup
-    user = User.new(user_params)
-
+    user = User.new({name: params["name"], username: params["username"], email: params["email"], password: params["password"]})
+    
     if user.save
       render json: {token: Auth.create_token({id: user.id, name: user.name, username: user.username, email: user.email})}
+      #render json: user, status: 200
     else
       render json: {message: user.errors}, status: 400
     end
@@ -28,7 +29,7 @@ class Api::UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
+    if @user.update(email: params)
       render json: @user
     else
       render json: {message: @user.errors}, status: 400
@@ -46,8 +47,9 @@ class Api::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :username, :email, :password, :project_id)
+    params.require(:user).permit(:password, :name, :username, :email )
   end
+  
 
   def set_user
     @user = User.find_by(id: params[:id])

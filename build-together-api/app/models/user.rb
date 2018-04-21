@@ -1,8 +1,9 @@
 class User < ApplicationRecord
-  has_secure_password
 
-  belongs_to :project
+  has_many :projects
 
   validates :email, :username, presence: true
   validates :email, :username, uniqueness: true
+  
+  has_secure_password
 end

@@ -26,7 +26,32 @@ const authFailure = (errors) => {
 }
 
 export const signupUser = (credentials) => {
-  
+
+  return dispatch => {
+    
+    return fetch(`${API_URL}/signup`, {
+      
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(credentials)
+    })
+    .then(res => res.json())
+    .then(response => {
+      const token = response["token"];
+      localStorage.setItem('Token', token);
+      return getUser(token)
+    })
+    .then((user) => {
+      debugger
+      dispatch(authSuccess(user, localStorage.Token))
+    })
+    .catch( error => {
+      console.log(error);
+      
+      dispatch(authFailure(error))
+      localStorage.clear()
+    })
+  }
 }
 
 
