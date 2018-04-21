@@ -11,6 +11,7 @@ const Header = () => {
       </div>
       <div className="right-header">  
         <NavLink className="right-navbar-links navbar-links" to="/signup" exact>Signup</NavLink>
+        <NavLink className="right-navbar-links navbar-links" to="/projects/new" exact>Create Project</NavLink>
         {/* <NavLink className="right-navbar-links navbar-links" to="/about" exact>About Us</NavLink> */}
       </div>
     </div>
