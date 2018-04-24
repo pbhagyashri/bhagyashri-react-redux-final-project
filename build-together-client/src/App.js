@@ -7,8 +7,9 @@ import Header from './components/Header'
 import Login from './containers/Login'
 import Signup from './containers/Signup'
 import Home from './components/Home'
+import Projects from './containers/Projects';
+import ProjectForm from './containers/ProjectForm';
 
-import Project from './containers/Project';
 
 
 class App extends Component {
@@ -25,7 +26,9 @@ class App extends Component {
             </header>  
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
-            <Route path="/projects/new" component={Project} />
+            <Route exact path="/projects" component={Projects} />
+            
+            <Route exact path={"/projects/new"} component={ProjectForm} />
           </div>
         </Router>
         </div>

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 const API_URL = "http://192.168.1.190:3001/api"
 
-class Project extends Component {
+class ProjectForm extends Component {
   
   constructor(props) {
 
@@ -109,4 +109,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Project);
+export default connect(mapStateToProps)(ProjectForm);
