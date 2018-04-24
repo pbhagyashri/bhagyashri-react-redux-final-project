@@ -16,7 +16,7 @@ class Api::ProjectsController < ApplicationController
   end
 
   def create
-    
+    binding.pry
     project = Project.new(project_params)
 
     if project.save
@@ -48,12 +48,11 @@ class Api::ProjectsController < ApplicationController
   private 
 
   def project_params
-    params.require(:project).permit(:name, :languages, :description, :duration)
+    params.require(:project).permit(:name, :languages, :description, :duration, :user_id)
   end
 
   def set_project
     @project = Project.find_by(id: params[:id])
   end
-
 
 end

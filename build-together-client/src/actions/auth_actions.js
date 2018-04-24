@@ -9,7 +9,7 @@ const authRequest = () => {
 }
 
 const authSuccess = (user, token) => {
-
+ 
   return {
     type: 'USER_AUTHENTICATED',
     user: user,
@@ -42,7 +42,7 @@ export const signupUser = (credentials) => {
       return getUser(token)
     })
     .then((user) => {
-      debugger
+
       dispatch(authSuccess(user, localStorage.Token))
     })
     .catch( error => {
@@ -53,8 +53,6 @@ export const signupUser = (credentials) => {
     })
   }
 }
-
-
 
 export const authenticate = (credentials) => {
 

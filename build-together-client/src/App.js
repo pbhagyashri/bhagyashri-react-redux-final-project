@@ -42,5 +42,3 @@ const mapStateToProps = (state) => {
 
 export default App = connect(mapStateToProps, {})(App);
 
-//export default Signup
-

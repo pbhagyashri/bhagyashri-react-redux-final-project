@@ -1,7 +1,9 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const Home = () => {
+const Home = (props) => {
+
   return(
     <div>
       
@@ -9,4 +11,13 @@ const Home = () => {
   )
 } 
 
-export default Home;
+function mapStateToProps(state) {
+  
+  return {
+    email: state.email,
+    password: state.password,
+    name: state.auth.name
+  }
+}
+
+export default connect(mapStateToProps)(Home);

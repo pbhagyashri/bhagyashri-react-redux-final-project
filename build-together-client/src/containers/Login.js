@@ -25,10 +25,11 @@ class Login extends Component {
   handleOnLogin(event) {
     
     event.preventDefault();
-   
+    
     this.props.authenticate(this.state)
     .then(() => {
-      if(this.props.name !== ""){
+  
+      if(this.props.user){
         this.props.history.push("/")
       } else {
         window.alert("Sorry, Email or Password is incorrect. Please try again")
@@ -44,7 +45,6 @@ class Login extends Component {
 
   render() {
     
-
     return (
       <div className="custom-container row">
         <div className="col-sm-4"></div>
@@ -81,11 +81,11 @@ class Login extends Component {
 }
 
 function mapStateToProps(state) {
-  
+
   return {
     email: state.email,
     password: state.password,
-    name: state.auth.name
+    user: state.auth.user
   }
 }
 

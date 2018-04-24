@@ -1,7 +1,6 @@
 
 export default (state = {
   token: null,
-  name: "",
   authenticating: false,
   authenticated: false,
   errors: [],
@@ -16,14 +15,11 @@ export default (state = {
         token: action.tokenauthenticate
       }
     case 'USER_AUTHENTICATED':
-    
       return {
         ...state,
         token: action.token,
-        name: action.user.name,
         authenticated: true,
         user: action.user,
-      
       }
     case 'AUTHENTICATION_FAILURE':
       return {
