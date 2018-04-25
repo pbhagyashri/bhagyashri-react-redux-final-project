@@ -121,18 +121,10 @@ export const getUser = (token) => {
   }
 }
 
-// fetch("http://192.168.1.190:3001/api/projects", {
-//           method: 'POST',
-//           headers: {'Authorization': localStorage.Token},
-//           body: JSON.stringify({project: {
-//             name: "NAME",
-//             technology: "TECH",
-//             description: "DESC",
-//             duration: "2 months",
-//             user_id: 2
-//           }})
-//       })
-//           .then(res => res.json())
-//           .then((response) => {
-//             console.log(response)
-//           })
+export const logout = () => {
+  return dispatch => {
+    localStorage.clear();
+    return dispatch({type: 'LOGGEDOUT'});
+  }
+}
+

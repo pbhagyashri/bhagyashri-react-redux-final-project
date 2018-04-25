@@ -10,12 +10,14 @@ import Home from './components/Home'
 import Projects from './containers/Projects';
 import ProjectForm from './containers/ProjectForm';
 import { getUser } from './actions/auth_actions';
+import Logout from './containers/Logout'
 
 class App extends Component {
 
   componentDidMount() {
+  
     const token = localStorage.Token
-
+    
     if(token) {
       this.props.getUser(token)
     }
@@ -33,12 +35,13 @@ class App extends Component {
             <header className="App-header">
               <Route path="/" component={Home} />
               <Header />
-            </header>  
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
+            <Route path="/" component={Logout} />
             <Route exact path="/projects" component={Projects} />
             
             <Route exact path={"/projects/new"} component={ProjectForm} />
+            </header>  
           </div>
         </Router>
         </div>
@@ -48,9 +51,9 @@ class App extends Component {
   }
 }
 const mapStateToProps = (state) => {
+  
   return {  
     user: state.auth,
-    projects: state.projects
   }
 }
 

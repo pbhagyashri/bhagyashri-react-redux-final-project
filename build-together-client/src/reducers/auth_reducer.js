@@ -12,6 +12,7 @@ export default (state = {
       return {
         ...state,
         authenticating: true,
+        authenticated: false,
         token: action.tokenauthenticate
       }
     case 'USER_AUTHENTICATED':
@@ -19,6 +20,7 @@ export default (state = {
         ...state,
         token: action.token,
         authenticated: true,
+        authenticating: false,
         user: action.user,
       }
     case 'AUTHENTICATION_FAILURE':
@@ -33,6 +35,15 @@ export default (state = {
       return {
         ...state,
         user: action.user
+      }
+    
+      case 'LOGGEDOUT':
+      return {
+        ...state,
+        token: null,
+        authenticated: false,
+        authenticating: false,
+        user: {}
       }
 
     default:

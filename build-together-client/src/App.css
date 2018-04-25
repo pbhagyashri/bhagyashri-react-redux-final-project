@@ -35,6 +35,13 @@
   background-color: #f7c331;
 }
 
+.logout-button {
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
+  
+}
+
 .navbar-links {
   display: inline-block;
   text-decoration: none;

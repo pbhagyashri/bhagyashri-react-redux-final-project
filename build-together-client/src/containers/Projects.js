@@ -40,7 +40,7 @@ class Projects extends Component {
   render() {
     return(
       <div>
-        <Project projects={projects}/>
+        <Project projects={this.state.projects}/>
       </div>
     )
   }
