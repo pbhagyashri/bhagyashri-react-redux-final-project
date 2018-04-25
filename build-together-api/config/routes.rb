@@ -9,6 +9,6 @@ Rails.application.routes.draw do
     get "/logout", to: "sessions#destroy"
     post "/find_user", to: "sessions#find_user"
 
-    resources :projects
+    resources :projects, only: [:create, :edit, :show, :update, :destroy]
   end
 end

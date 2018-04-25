@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-const API_URL = "http://192.168.1.190:3001/api"
+import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router-dom';
+import { fetchProjects } from '../actions/project_actions'
 
 class ProjectForm extends Component {
   
@@ -11,7 +12,7 @@ class ProjectForm extends Component {
     
     this.state = {
       name: "",
-      languages: "",
+      technology: "",
       description: "",
       duration: "",
       user_id: this.props.user_id
@@ -23,29 +24,14 @@ class ProjectForm extends Component {
       [event.target.name]: event.target.value
     })
   }
-  
-  createProject (project) {
-    
-    fetch(`${API_URL}/projects`, {
-      method: 'POST',
-      body: JSON.stringify({project: project}),
-      header: {
-        'Authorization': localStorage.Token,
-        'Content-Type': 'application/json'
-      }
-      
-    })
-    .then(res => res.json())
-    .then(jres => {
-      console.log("Form Submit", jres)
-    })
-  }
 
-  handleSubmit(event) {
-    event.preventDefault();
+  handleProjectSubmit(event) {
+    event.preventDefault() 
     
-    if(this.state.name !== "") {
-      this.createProject(this.state)
+    if(this.props.fetchProjects(this.state)){
+      this.props.history.push("/projects")
+    }else{
+      window.alert("Sorry, Please try again")
     }
   }
 
@@ -55,46 +41,51 @@ class ProjectForm extends Component {
       <div className="custom-container row">
         <div className="col-sm-2"></div>
         <div className="col-sm-8">
-          <form onSubmit={(event) => this.handleSubmit(event)}>
+          <h2>Create a  Project</h2>
+          <form onSubmit={(event) => this.handleProjectSubmit(event)}>
+           <div className="form-group">
             <label>Name:</label>
             <input 
-            type="text" 
-            className="form-control"
-            placeholder="Please Choose a name"
-            name="name"
             onChange={(event) => this.handleChange(event)}
-            
+            name="name"
+            className="form-control"
+            type="text" 
+            placeholder="Please Choose a name"
+            value={this.state.name}
             />
 
-            <label>Languages:</label>
+            <label>Technology:</label>
             <input 
-            type="text" 
-            className="form-control"
-            name="languages"
-            placeholder="Please enter the languages and frameworks"
             onChange={(event) => this.handleChange(event)}
+            className="form-control"
+            name="technology"
+            type="text" 
+            placeholder="Please enter the technologies used in your project"
+            value={this.state.technology}
             />
             
             <label>Description:</label>
-            <textarea 
-            type="text" 
-            className="form-control"
-            name="description"
-            placeholder="Please enter a descriptiong of your project."
+            <input 
             onChange={(event) => this.handleChange(event)}
+            name="description"
+            className="form-control"
+            type="text" 
+            placeholder="Please enter a descriptiong of your project."
+            value={this.state.value}
             />
 
             <label>Duration:</label>
             <input 
-            type="text" 
-            className="form-control"
-            name="duration"
-            placeholder="Please enter the duration of your project"
             onChange={(event) => this.handleChange(event)}
+            name="duration"
+            className="form-control"
+            type="text" 
+            placeholder="Please enter the duration of your project"
+            value={this.props.duration}
             />
 
             <button type="submit" className="btn custom-btn">Submit</button>
-
+          </div>
           </form>
         </div>
         <div className="col-sm-2"></div>
@@ -105,8 +96,14 @@ class ProjectForm extends Component {
 
 const mapStateToProps = (state) => {
   return {
-      user_id: state.auth.user.id
+    user_id: state.auth.user.id
   }
 }
 
-export default connect(mapStateToProps)(ProjectForm);
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    fetchProjects: fetchProjects
+  }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectForm);

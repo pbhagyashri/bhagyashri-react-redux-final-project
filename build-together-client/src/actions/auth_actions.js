@@ -17,6 +17,13 @@ const authSuccess = (user, token) => {
   }
 }
 
+const userLoggedIn = (user) => {
+  return {
+    type: 'LOGGEDIN',
+    user: user
+  }
+}
+
 const authFailure = (errors) => {
   
   return {
@@ -89,34 +96,41 @@ export const authenticate = (credentials) => {
 }
 
 export const getUser = (token) => {
-  
-  return fetch("http://192.168.1.190:3001/api/find_user", {
-    method: 'POST',
-    headers: new Headers({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.Token}`,
-    }),
-    body: JSON.stringify({token: token})
-  })
-  .then((res) => res.json())
-  .then((response, token) => {
-    if (response.errors) {
-      throw Error(response.errors);
-      
-    } else{
-      
-      return response
-    }
-  })
-  .catch((error) => {
-    return error;
-    localStorage.clear()
-  })
+  return dispatch => {
+    return fetch("http://192.168.1.190:3001/api/find_user", {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.Token}`,
+      }),
+      body: JSON.stringify({token: token})
+    })
+    .then((res) => res.json())
+    .then((response, token) => {
+      if (response.errors) {
+        throw Error(response.errors);
+        
+      } else{
+        dispatch(userLoggedIn(response))
+      }
+    })
+    .catch((error) => {
+      return error;
+      localStorage.clear()
+    })
+  }
 }
 
 // fetch("http://192.168.1.190:3001/api/projects", {
 //           method: 'POST',
 //           headers: {'Authorization': localStorage.Token},
+//           body: JSON.stringify({project: {
+//             name: "NAME",
+//             technology: "TECH",
+//             description: "DESC",
+//             duration: "2 months",
+//             user_id: 2
+//           }})
 //       })
 //           .then(res => res.json())
 //           .then((response) => {

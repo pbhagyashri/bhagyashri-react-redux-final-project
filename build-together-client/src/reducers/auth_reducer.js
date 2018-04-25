@@ -29,8 +29,15 @@ export default (state = {
         authenticated: false,
         errors: action.errors
       }
+    case 'LOGGEDIN':
+      return {
+        ...state,
+        user: action.user
+      }
+
     default:
       return state
+      console.log("Current State", state)
   }
 
 }

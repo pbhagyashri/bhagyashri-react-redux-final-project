@@ -1,14 +1,35 @@
 
-import React from 'react';
-import { withRouter } from 'react-router-dom';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import Project from '../components/Project'
 
-const Projects = (props) => {
-  return(
-    <div>
-      <Project />
-    </div>
-  )
+class Projects extends Component {
+  
+  // constructor(props) {
+  //   super();
+
+  //   this.state = {
+      
+  //   }
+
+  // }
+
+  render() {
+    return(
+      <div>
+        <Project />
+      </div>
+    )
+  }
 }
 
-export default Projects;
+const mapStateToProps = (state) => {
+  return {
+    projects: state.projects.projects,
+    user: state.auth.user
+  }
+}
+
+
+export default connect(mapStateToProps)(Projects);

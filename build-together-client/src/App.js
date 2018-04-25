@@ -9,11 +9,21 @@ import Signup from './containers/Signup'
 import Home from './components/Home'
 import Projects from './containers/Projects';
 import ProjectForm from './containers/ProjectForm';
-
-
+import { getUser } from './actions/auth_actions';
 
 class App extends Component {
+
+  componentDidMount() {
+    const token = localStorage.Token
+
+    if(token) {
+      this.props.getUser(token)
+    }
+  }
+
+
   render() {
+    console.log("User", this.props.user)
     return (
       
       <div className="App">
@@ -39,9 +49,10 @@ class App extends Component {
 }
 const mapStateToProps = (state) => {
   return {  
-    user: state.auth
+    user: state.auth,
+    projects: state.projects
   }
 }
 
-export default App = connect(mapStateToProps, {})(App);
+export default App = connect(mapStateToProps, {getUser})(App);
 

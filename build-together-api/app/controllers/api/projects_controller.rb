@@ -1,3 +1,4 @@
+
 class Api::ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
@@ -7,7 +8,7 @@ class Api::ProjectsController < ApplicationController
     if token && Auth.decode_token(token)
     render json: Project.all
     else
-      render json: {error: {message: "You must be login"}}
+      render json: {error: {message: "You must be logedin"}}
     end
   end
 
@@ -16,9 +17,9 @@ class Api::ProjectsController < ApplicationController
   end
 
   def create
-    binding.pry
-    project = Project.new(project_params)
 
+    project = Project.new(project_params)
+    
     if project.save
       render json: project
     else
@@ -45,10 +46,10 @@ class Api::ProjectsController < ApplicationController
     end
   end
 
-  private 
+  private
 
   def project_params
-    params.require(:project).permit(:name, :languages, :description, :duration, :user_id)
+    params.require(:project).permit(:name, :technology, :description, :duration, :user_id)
   end
 
   def set_project
