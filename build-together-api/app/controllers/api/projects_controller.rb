@@ -21,7 +21,7 @@ class Api::ProjectsController < ApplicationController
     project = Project.new(project_params)
     
     if project.save
-      render json: project
+      render json: project, status: 200
     else
       render json: {message: project.errors}, status: 400
     end

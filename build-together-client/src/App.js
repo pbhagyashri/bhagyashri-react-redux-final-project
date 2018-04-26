@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import './App.css';
@@ -33,14 +33,15 @@ class App extends Component {
         <Router>
           <div>
             <header className="App-header">
+              
               <Route path="/" component={Home} />
               <Header />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-            <Route path="/" component={Logout} />
-            <Route exact path="/projects" component={Projects} />
-            
-            <Route exact path={"/projects/new"} component={ProjectForm} />
+              <Route path="/login" component={Login} />
+              <Route path="/signup" component={Signup} />
+              <Route exact path="/projects" component={Projects} />
+              
+              <Route exact path={"/projects/new"} component={ProjectForm} />
+             
             </header>  
           </div>
         </Router>
@@ -51,9 +52,9 @@ class App extends Component {
   }
 }
 const mapStateToProps = (state) => {
-  
   return {  
     user: state.auth,
+    authenticated: state.auth.authenticated
   }
 }
 

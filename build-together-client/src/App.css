@@ -51,18 +51,6 @@
   margin-right: 15px;
 }
 
-.left-header {
-  float: left;
-  width: 50%;
-  text-align: left,
-}
-
-.right-header {
-  float: right;
-  width: 50%;
-  text-align: right;
-}
-
 .navbar-links:hover{
   text-decoration: none;
   color: #f7882f;

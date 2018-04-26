@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { logout } from '../actions/auth_actions'
 
 class Header extends Component {
 
-  render() {
+  handleLogout(event) {
+    event.preventDefault();
+    this.props.logout();
+  }
 
+  render() {
     const LoggedOutnav = (
       <div>
         <NavLink className="left - navbar-links navbar-links" to="/login" exact>Login</NavLink>
@@ -21,6 +27,8 @@ class Header extends Component {
 
         <NavLink className="right-navbar-links navbar-links" to="/projects/new" exact>Create Project</NavLink>
         
+        <NavLink onClick={(event) => this.handleLogout(event)} className="right-navbar-links navbar-links" to="/" exact>Logout</NavLink>
+        
       </div>
     )
 
@@ -31,18 +39,23 @@ class Header extends Component {
             <div className="navbar-links">
               {this.props.authenticated ? loggedInNav : LoggedOutnav}
             </div>
-          </div>
+          </div>          
       </div>
     )
   }
 }
 
 function mapStateToProps(state) {
-  
   return {
     authenticated: state.auth.authenticated
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    loguot: logout
+  }, dispatch);
+};
 
-export default connect(mapStateToProps)(Header);
+
+export default connect(mapStateToProps, {logout})(Header);

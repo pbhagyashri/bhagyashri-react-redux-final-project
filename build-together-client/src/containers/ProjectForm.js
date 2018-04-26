@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { withRouter } from 'react-router-dom';
-import { fetchProjects } from '../actions/project_actions'
+import { createProject } from '../actions/project_actions'
 
 class ProjectForm extends Component {
   
@@ -15,7 +14,7 @@ class ProjectForm extends Component {
       technology: "",
       description: "",
       duration: "",
-      user_id: this.props.user_id
+      user_id: this.props.user_id,
     }
   }//constructor
 
@@ -27,12 +26,14 @@ class ProjectForm extends Component {
 
   handleProjectSubmit(event) {
     event.preventDefault() 
-    
-    if(this.props.fetchProjects(this.state)){
+    this.props.createProject(this.state)
+
+    if(this.state.name !== ""){
       this.props.history.push("/projects")
     }else{
-      window.alert("Sorry, Please try again")
+      window.alert("sorry")
     }
+
   }
 
   render() {
@@ -102,7 +103,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    fetchProjects: fetchProjects
+    createProject: createProject
   }, dispatch);
 };
 

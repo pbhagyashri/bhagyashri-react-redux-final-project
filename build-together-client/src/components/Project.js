@@ -1,9 +1,10 @@
 import React from 'react';
 
 const Project = (props) => {
+
   return(
     <div>
-      <h2>Project</h2>
+      <h2>Add Projects here</h2>
     </div>
   )
 }

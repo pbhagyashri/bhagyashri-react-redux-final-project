@@ -1,6 +1,8 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchProjects } from '../actions/project_actions'
 
 import Project from '../components/Project'
 
@@ -10,37 +12,20 @@ class Projects extends Component {
     super(props);
     
     this.state = {
-      projects: [],
-      user: {}
+      projects: []
     }
 
-  }
-
-  setProjects(projects) {
-    this.setState = {
-      projects: projects.concat(projects)
-    }
   }
 
   componentDidMount() {
-    fetch("http://192.168.1.190:3001/api/projects", {
-      method: "GET",
-      headers: {
-        'Authorization': localStorage.Token,
-        'Content-Type': 'application/json',
-      }
-    })
-    .then(res => res.json())
-    .then(jsonres => {
-      debugger
-      this.setProjects(jsonres)
-    })
+    this.props.fetchProjects()
   }
 
   render() {
+    
     return(
       <div>
-        <Project projects={this.state.projects}/>
+        <Project projects={this.props.projects}/>
       </div>
     )
   }
@@ -48,9 +33,15 @@ class Projects extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.auth.user
+    user: state.auth.user,
+    projects: state.projects.projects
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    fetchProjects: fetchProjects
+  }, dispatch);
+};
 
-export default connect(mapStateToProps)(Projects);
+export default connect(mapStateToProps, mapDispatchToProps)(Projects);

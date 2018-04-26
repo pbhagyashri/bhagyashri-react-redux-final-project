@@ -1,3 +1,5 @@
+import { authenticate } from "../actions/auth_actions";
+
 
 export default (state = {
   token: null,
@@ -34,7 +36,8 @@ export default (state = {
     case 'LOGGEDIN':
       return {
         ...state,
-        user: action.user
+        user: action.user,
+        authenticated: true
       }
     
       case 'LOGGEDOUT':
