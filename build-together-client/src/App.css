@@ -1,7 +1,7 @@
 
 .App-header {
-  height: 150px;
-  padding: 20px;
+  height: 100px;
+  padding: 30px 20px;
 }
 #logo {
   font-family: 'Berkshire Swash', cursive;
@@ -58,6 +58,30 @@
 
 .navbar-links:visited, .navbar-links:active {
   text-decoration: none;
-  
 }
 
+.header-image{
+  width: 600px;
+}
+
+.sub-titles {
+  text-align: center;
+  margin-top: 170px;
+}
+
+.sub-titles h1, h3 {
+  font-weight: 100;
+}
+
+.sub-titles h5 {
+  margin-top: 40px;
+}
+
+.dash {
+  width: 90px;
+  height: 2px;
+  margin: 10px;
+  background-color: #6b7a8f;
+  display: inline-block;
+  text-align: center;
+}

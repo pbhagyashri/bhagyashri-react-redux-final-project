@@ -24,6 +24,6 @@ ReactDOM.render(
     <App />
   </Provider>, 
   
-  document.querySelector('.container')
+  document.querySelector('.container-fluid')
 );
 registerServiceWorker();

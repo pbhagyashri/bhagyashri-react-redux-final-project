@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route} from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import './App.css';
-import Header from './components/Header'
+import Header from './containers/Header'
 import Login from './containers/Login'
 import Signup from './containers/Signup'
 import Home from './components/Home'
@@ -34,10 +34,10 @@ class App extends Component {
           <div>
             <header className="App-header">
               
-              <Route path="/" component={Home} />
               <Header />
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
+              <Route path="/" component={Home} />
               <Route exact path="/projects" component={Projects} />
               
               <Route exact path={"/projects/new"} component={ProjectForm} />

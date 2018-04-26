@@ -1,12 +1,23 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import people from '../people.jpg'
 
 const Home = (props) => {
 
   return(
-    <div>
-      
+    <div className="row">
+      {/* <div className="image-container container-fluid">
+        <div className="col-sm-6">
+          <img className="header-image" src={people} alt="image" />
+        </div>
+        <div className="col-sm-6 sub-titles">
+          <h1>Build Together</h1>
+          <div className="dash"></div>
+          <h3>build better</h3>
+          <h5>Check out all open projects!</h5>
+        </div>
+        
+      </div> */}
     </div>
   )
 } 
