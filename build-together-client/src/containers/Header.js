@@ -14,52 +14,47 @@ class Header extends Component {
 
   render() {
     const LoggedOutnav = (
-      <div className="sub-titles">
-        <h1>Build Together</h1>
-        <div className="dash"></div>
-        <h3>build better</h3>
-        <h5>Check out all open projects!</h5>
+      <div className="header-links">
+    
+        <NavLink className="navbar-links" to="/login" exact>Login</NavLink>
 
-        <NavLink className="left - navbar-links navbar-links" to="/login" exact>Login</NavLink>
-
-        <NavLink className="right-navbar-links navbar-links" to="/signup" exact>Signup</NavLink>
+        <NavLink className="navbar-links" to="/signup" exact>Signup</NavLink>
           
       </div>
     )
 
     const loggedInNav = (
-      <div>
-        <NavLink className="left-navbar-links navbar-links" to="/" exact>Home</NavLink>
+      <div className="header-links">
+        <div><NavLink className="navbar-links special-link" to="/projects" exact>Check Out Open Projects</NavLink></div>
 
-        <NavLink className="right-navbar-links navbar-links" to="/projects/new" exact>Create Project</NavLink>
+        <NavLink className="navbar-links" to="/" exact>Home</NavLink>
         
-        <NavLink onClick={(event) => this.handleLogout(event)} className="right-navbar-links navbar-links" to="/" exact>Logout</NavLink>
+        <NavLink className="navbar-links" to="/projects/new" exact>Create Project</NavLink>
+        
+        <NavLink onClick={(event) => this.handleLogout(event)} className="navbar-links" to="/" exact>Logout</NavLink>
         
       </div>
     )
 
     return(
-      <div className="header">
-        <div><h1 id="logo">Build Together</h1></div>
+      <div>
         
         <div className="row">
           
-          <div className="col-sm-6">
+          <div className="col-sm-8">
             <img className="header-image" src={people} alt="image" />
           </div>
           
-          <div className="col-sm-6">
-            <div className="navbar-links">
+          <div className="col-sm-4 sub-titles">
+            <h1 id="logo">Build Together</h1>
+            <div className="dash"></div>
+            <h3>build better</h3>            
+            <div>
               {this.props.authenticated ? loggedInNav : LoggedOutnav}
             </div>
           </div>
         
         </div>
-
-  
-          
-          
-        
       </div>
     )
   }

@@ -9,7 +9,6 @@ const fetchProjectSuccess = (projects) => {
   }
 }
 
-
 export const createProject = (project) => {
   
   return dispatch => {
@@ -26,14 +25,13 @@ export const createProject = (project) => {
     })
     .then(res => res.json())
 
-    .then(project => {
-     
+    .then(response => {
       if (project.message) {
         throw Error(project.message.name, project.message.user);
       } else{
       dispatch({
         type: 'ADD_PROJECT',
-        payload: project
+        payload: response
     })}
     })
     .catch(err => {
@@ -54,7 +52,6 @@ export const fetchProjects = () => {
     })
     .then(res => res.json())
     .then(jsonres => {
-    
       dispatch(fetchProjectSuccess(jsonres))
     })
     .catch( error => {

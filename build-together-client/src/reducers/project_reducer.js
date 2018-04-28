@@ -1,27 +1,21 @@
 export default (state = {
-  name: "",
-  technology: "",
-  description: "",
-  duration: "",
-  projects: []
+  projects: [],
 }, action) => {
   switch (action.type) {
-    case 'ADD_PROJECT':
-   
-    return {
-      ...state,
-      name: action.payload.name,
-      technology: action.payload.technology,
-      description: action.payload.description,
-      duration: action.payload.duration
-    }
-
+    
     case 'ADD_ALL_PROJECTS':
     return {
       ...state,
-      projects: state.projects.concat(action.projects)
+      projects: action.projects
     }
 
+    case 'ADD_PROJECT':
+    
+    return {
+      ...state,
+      projects: state.projects.concat(action.payload),
+
+    }
 
     default: 
       return state

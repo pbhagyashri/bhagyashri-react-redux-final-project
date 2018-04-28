@@ -7,15 +7,6 @@ import { fetchProjects } from '../actions/project_actions'
 import Project from '../components/Project'
 
 class Projects extends Component {
-  
-  constructor(props) {
-    super(props);
-    
-    this.state = {
-      projects: []
-    }
-
-  }
 
   componentDidMount() {
     this.props.fetchProjects()
@@ -24,8 +15,14 @@ class Projects extends Component {
   render() {
     
     return(
-      <div>
-        <Project projects={this.props.projects}/>
+      <div className="project-container container-fluid">
+        <div className="row">
+          <div>
+            { this.props.projects.projects.length > 0 ?
+              this.props.projects.projects.map((project) => <Project project={project} /> ) : <p>Not Found</p>
+            }
+          </div>
+        </div>
       </div>
     )
   }
@@ -34,7 +31,7 @@ class Projects extends Component {
 const mapStateToProps = (state) => {
   return {
     user: state.auth.user,
-    projects: state.projects.projects
+    projects: state.projects
   }
 }
 
@@ -45,3 +42,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Projects);
+

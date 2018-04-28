@@ -12,7 +12,17 @@ import ProjectForm from './containers/ProjectForm';
 import { getUser } from './actions/auth_actions';
 import Logout from './containers/Logout'
 
+const API_URL = "http://192.168.1.190:3001/api"
+
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = { 
+      projects: []
+    }
+  }
 
   componentDidMount() {
   
@@ -25,7 +35,7 @@ class App extends Component {
 
 
   render() {
-    console.log("User", this.props.user)
+    console.log("this.state", this.state)
     return (
       
       <div className="App">
@@ -38,10 +48,8 @@ class App extends Component {
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
               <Route path="/" component={Home} />
-              <Route exact path="/projects" component={Projects} />
-              
               <Route exact path={"/projects/new"} component={ProjectForm} />
-             
+              <Route exact path="/projects" component={Projects} projects={this.state.projects}/>
             </header>  
           </div>
         </Router>

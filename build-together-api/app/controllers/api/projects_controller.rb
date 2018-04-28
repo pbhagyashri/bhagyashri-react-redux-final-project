@@ -7,6 +7,7 @@ class Api::ProjectsController < ApplicationController
 
     if token && Auth.decode_token(token)
     render json: Project.all
+    
     else
       render json: {error: {message: "You must be logedin"}}
     end
@@ -17,7 +18,6 @@ class Api::ProjectsController < ApplicationController
   end
 
   def create
-
     project = Project.new(project_params)
     
     if project.save

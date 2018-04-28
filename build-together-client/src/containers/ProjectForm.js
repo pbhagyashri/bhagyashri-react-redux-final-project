@@ -15,6 +15,7 @@ class ProjectForm extends Component {
       description: "",
       duration: "",
       user_id: this.props.user_id,
+      user_name: this.props.user_name 
     }
   }//constructor
 
@@ -25,9 +26,10 @@ class ProjectForm extends Component {
   }
 
   handleProjectSubmit(event) {
-    event.preventDefault() 
+    event.preventDefault()
+    
     this.props.createProject(this.state)
-
+    
     if(this.state.name !== ""){
       this.props.history.push("/projects")
     }else{
@@ -39,10 +41,9 @@ class ProjectForm extends Component {
   render() {
  
     return (
-      <div className="custom-container row">
-        <div className="col-sm-2"></div>
-        <div className="col-sm-8">
-          <h2>Create a  Project</h2>
+      <div className="row projects-container">
+        <div className="col-sm-6">
+          <h2>Create a new Project</h2>
           <form onSubmit={(event) => this.handleProjectSubmit(event)}>
            <div className="form-group">
             <label>Name:</label>
@@ -66,11 +67,10 @@ class ProjectForm extends Component {
             />
             
             <label>Description:</label>
-            <input 
+            <textarea 
             onChange={(event) => this.handleChange(event)}
             name="description"
-            className="form-control"
-            type="text" 
+            className="form-control" 
             placeholder="Please enter a descriptiong of your project."
             value={this.state.value}
             />
@@ -89,7 +89,7 @@ class ProjectForm extends Component {
           </div>
           </form>
         </div>
-        <div className="col-sm-2"></div>
+        <div className="col-sm-6"></div>
       </div>
     )
   }
@@ -97,7 +97,8 @@ class ProjectForm extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user_id: state.auth.user.id
+    user_id: state.auth.user.id,
+    user_name: state.auth.user.name
   }
 }
 
