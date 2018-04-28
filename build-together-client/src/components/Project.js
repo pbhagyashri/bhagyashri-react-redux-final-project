@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 const Project = ({project}) => {
   
@@ -13,7 +14,9 @@ const Project = ({project}) => {
         <p>{project.description}</p>
         <h6>Technologies: {project.technology}</h6>
         <h6>Duration: {project.duration}</h6>
-        
+        <Link key={project.id} to={`/projects/${project.id}`}>
+          Learn More
+        </Link>
         </div>
       : <p>Loading...</p>}
     </div>
