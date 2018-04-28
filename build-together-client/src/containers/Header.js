@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+// import { bindActionCreators } from 'redux';
 import { logout } from '../actions/auth_actions'
 import people from '../people.jpg'
 
@@ -42,7 +42,7 @@ class Header extends Component {
         <div className="row">
           
           <div className="col-sm-8">
-            <img className="header-image" src={people} alt="image" />
+            <img className="header-image" src={people} alt="header"/>
           </div>
           
           <div className="col-sm-4 sub-titles">
@@ -66,11 +66,11 @@ function mapStateToProps(state) {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    loguot: logout
-  }, dispatch);
-};
+// const mapDispatchToProps = (dispatch) => {
+//   return bindActionCreators({
+//     loguot: logout
+//   }, dispatch);
+// };
 
 
 export default connect(mapStateToProps, {logout})(Header);

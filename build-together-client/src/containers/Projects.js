@@ -19,7 +19,7 @@ class Projects extends Component {
         <div className="row">
           <div>
             { this.props.projects.projects.length > 0 ?
-              this.props.projects.projects.map((project) => <Project project={project} /> ) : <p>Not Found</p>
+              this.props.projects.projects.map((project, index) => <Project project={project} key={index} />) : <p>Not Found</p>
             }
           </div>
         </div>

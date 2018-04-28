@@ -10,4 +10,5 @@ body {
 
 a:active, a:visited, a:link {
   text-decoration: none;
+  color: #f7882f;
 }

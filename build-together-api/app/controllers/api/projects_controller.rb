@@ -18,6 +18,7 @@ class Api::ProjectsController < ApplicationController
   end
 
   def create
+
     project = Project.new(project_params)
     
     if project.save
@@ -49,7 +50,7 @@ class Api::ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name, :technology, :description, :duration, :user_id)
+    params.require(:project).permit(:name, :technology, :description, :duration, :user_id, :user_name, :github_link)
   end
 
   def set_project
@@ -57,3 +58,5 @@ class Api::ProjectsController < ApplicationController
   end
 
 end
+
+

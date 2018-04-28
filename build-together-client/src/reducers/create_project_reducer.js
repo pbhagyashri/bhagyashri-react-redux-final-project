@@ -4,6 +4,7 @@ export default (state = {
   technology: "",
   description: "",
   duration: "",
+  github_link: ""
 
 }, action) => {
   switch (action.type) {
@@ -16,6 +17,7 @@ export default (state = {
       technology: action.technology,
       description: action.description,
       duration: action.duration,
+      github_link: action.github_link
     }
     default: 
       return state

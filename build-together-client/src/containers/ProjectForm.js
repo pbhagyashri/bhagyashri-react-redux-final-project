@@ -27,7 +27,7 @@ class ProjectForm extends Component {
 
   handleProjectSubmit(event) {
     event.preventDefault()
-    
+  
     this.props.createProject(this.state)
     
     if(this.state.name !== ""){
@@ -41,7 +41,7 @@ class ProjectForm extends Component {
   render() {
  
     return (
-      <div className="row projects-container">
+      <div className="row create-project-container">
         <div className="col-sm-6">
           <h2>Create a new Project</h2>
           <form onSubmit={(event) => this.handleProjectSubmit(event)}>
@@ -67,7 +67,8 @@ class ProjectForm extends Component {
             />
             
             <label>Description:</label>
-            <textarea 
+            <textarea
+             
             onChange={(event) => this.handleChange(event)}
             name="description"
             className="form-control" 

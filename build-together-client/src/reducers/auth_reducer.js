@@ -1,5 +1,3 @@
-import { authenticate } from "../actions/auth_actions";
-
 
 export default (state = {
   token: null,
@@ -51,7 +49,6 @@ export default (state = {
 
     default:
       return state
-      console.log("Current State", state)
   }
 
 }

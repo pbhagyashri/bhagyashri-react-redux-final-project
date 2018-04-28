@@ -10,9 +10,7 @@ import Home from './components/Home'
 import Projects from './containers/Projects';
 import ProjectForm from './containers/ProjectForm';
 import { getUser } from './actions/auth_actions';
-import Logout from './containers/Logout'
-
-const API_URL = "http://192.168.1.190:3001/api"
+// import Logout from './containers/Logout'
 
 class App extends Component {
 
@@ -35,7 +33,6 @@ class App extends Component {
 
 
   render() {
-    console.log("this.state", this.state)
     return (
       
       <div className="App">

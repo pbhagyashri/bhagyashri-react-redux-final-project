@@ -49,7 +49,6 @@ export const signupUser = (credentials) => {
       return getUser(token)
     })
     .then((user) => {
-
       dispatch(authSuccess(user, localStorage.Token))
     })
     .catch( error => {
@@ -115,7 +114,7 @@ export const getUser = (token) => {
       }
     })
     .catch((error) => {
-      return error;
+      console.log(error)
       localStorage.clear()
     })
   }
