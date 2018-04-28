@@ -9,6 +9,13 @@ const fetchProjectSuccess = (projects) => {
   }
 }
 
+const fetchProjectById = (project) => {
+  return {
+    type: 'GET_PROJECT',
+    project: project
+  }
+}
+
 export const createProject = (project) => {
   
   return dispatch => {
@@ -43,7 +50,7 @@ export const createProject = (project) => {
 export const fetchProjects = () => {
   return dispatch => {
 
-    fetch("http://192.168.1.190:3001/api/projects", {
+    fetch(`${API_URL}/projects`, {
       method: "GET",
       headers: {
         'Authorization': localStorage.Token,
@@ -58,5 +65,24 @@ export const fetchProjects = () => {
       console.log(error)
     })
 
+  }
+}
+
+export const fetchProject = (id) => {
+  return dispatch => {
+    fetch(`${API_URL}/projects/${id}`, {
+      method: "GET",
+      headers: {
+        'Authorization': localStorage.Token,
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(res => res.json())
+    .then(jres => {
+      dispatch(fetchProjectById(jres))
+    })
+    .catch(error => {
+      console.log(error)
+    })
   }
 }

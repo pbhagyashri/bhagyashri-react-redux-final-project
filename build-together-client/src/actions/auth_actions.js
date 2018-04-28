@@ -96,7 +96,7 @@ export const authenticate = (credentials) => {
 
 export const getUser = (token) => {
   return dispatch => {
-    return fetch("http://192.168.1.190:3001/api/find_user", {
+    return fetch(`${API_URL}/find_user`, {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json',

@@ -9,6 +9,7 @@ import Signup from './containers/Signup'
 import Home from './components/Home'
 import Projects from './containers/Projects';
 import ProjectForm from './containers/ProjectForm';
+import ProjectShow from './containers/ProjectShow';
 import { getUser } from './actions/auth_actions';
 // import Logout from './containers/Logout'
 
@@ -46,6 +47,7 @@ class App extends Component {
               <Route path="/signup" component={Signup} />
               <Route path="/" component={Home} />
               <Route exact path={"/projects/new"} component={ProjectForm} />
+              <Route exact path={"/projects/:id"} component={ProjectShow} />
               <Route exact path="/projects" component={Projects} projects={this.state.projects}/>
             </header>  
           </div>

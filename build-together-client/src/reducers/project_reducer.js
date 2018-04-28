@@ -17,6 +17,12 @@ export default (state = {
 
     }
 
+    case 'GET_PROJECT':
+      return {
+        ...state,
+        [action.project.id]: action.project
+      }
+
     default: 
       return state
   }
