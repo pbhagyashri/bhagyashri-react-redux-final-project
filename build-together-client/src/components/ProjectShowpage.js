@@ -1,22 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
 
-const Project = ({project}) => {
+const ProjectShowpage = ({project}) => {
   
   return(
     
-    <div className="col-sm-4">
-      { project ? 
-        
-        <div className="project-card">
+    <div>
+      { project ?   
+        <div className="project-show-card">
           <h3>{project.name}</h3>
           <h4>By, {project.user_name}</h4>
           <p>{project.description}</p>
           <h6>Technologies: {project.technology}</h6>
           <h6>Duration: {project.duration}</h6>
-          <Link key={project.id} to={`/projects/${project.id}`}>
-            Learn More
-          </Link>
         </div>
       : <p>Loading...</p>}
     </div>
@@ -24,4 +19,4 @@ const Project = ({project}) => {
   )
 }
 
-export default Project;
+export default ProjectShowpage;
