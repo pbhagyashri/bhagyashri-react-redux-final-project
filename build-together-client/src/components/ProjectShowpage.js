@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 
-const ProjectShowpage = ({project}) => {
-  
+const ProjectShowpage = ({project, currentUser}) => {  
   return(
     
     <div>
@@ -13,7 +12,7 @@ const ProjectShowpage = ({project}) => {
           <p>{project.description}</p>
           <h6>Technologies: {project.technology}</h6>
           <h6>Duration: {project.duration}</h6>
-          <Link key={project.id} to={`/projects/${project.id}/edit`}>Edit Project</Link>
+          {project.user_id === currentUser.id ? <Link key={project.id} to={`/projects/${project.id}/edit`}>Edit Project</Link> : ""}
         </div>
       : <p>Loading...</p>}
     </div>

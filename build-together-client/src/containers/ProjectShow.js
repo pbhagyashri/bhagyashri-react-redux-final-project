@@ -23,7 +23,7 @@ class ProjectShow extends Component {
       <div className="row">
         <div className="col-sm-3"></div>
         <div className="col-sm-6">
-          <ProjectShowpage project={project}/>  
+          <ProjectShowpage project={project} currentUser={this.props.user}/>  
         </div>
         <div className="col-sm-3"></div>
       </div>
@@ -31,8 +31,12 @@ class ProjectShow extends Component {
   }
 }
 
-const mapStateToProps = ({projects}, ownProps) => {
-  return { project: projects[ownProps.match.params.id] }
+const mapStateToProps = ({projects, auth}, ownProps) => {
+  console.log(auth)
+  return { 
+    project: projects[ownProps.match.params.id],
+    user: auth.user
+  }
 }
 
 export default connect(mapStateToProps, { fetchProject })(ProjectShow);
