@@ -10,5 +10,7 @@ Rails.application.routes.draw do
     post "/find_user", to: "sessions#find_user"
 
     resources :projects, only: [:index, :create, :edit, :show, :update, :destroy]
+    
+    resources :comments, only: [:index, :create, :edit, :show, :update, :destroy]
   end
 end
