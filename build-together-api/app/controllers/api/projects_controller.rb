@@ -6,10 +6,9 @@ class Api::ProjectsController < ApplicationController
     token = request.env["HTTP_AUTHORIZATION"]
 
     if token && Auth.decode_token(token)
-    render json: Project.all
-    
+      render json: Project.all
     else
-      render json: {error: {message: "You must be logedin"}}
+      render json: {error: {message: "You must be loggedin"}}
     end
   end
 
