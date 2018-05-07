@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ProjectShowpage from '../components/ProjectShowpage'
 
-import { fetchProject } from '../actions/project_actions'
+import { fetchProject, deletePost } from '../actions/project_actions'
 class ProjectShow extends Component {
 
   componentDidMount() {
@@ -10,6 +10,14 @@ class ProjectShow extends Component {
     if(!this.props.project){
       this.props.fetchProject(id);
     }
+  }
+
+  handleOnDelete(event) {
+    
+    const { id } = this.props.match.params
+
+    this.props.deletePost(id)
+    this.props.history.replace('/projects')
   }
 
   render() {
@@ -23,7 +31,8 @@ class ProjectShow extends Component {
       <div className="row">
         <div className="col-sm-3"></div>
         <div className="col-sm-6">
-          <ProjectShowpage project={project} currentUser={this.props.user}/>  
+          <ProjectShowpage project={project} currentUser={this.props.user}/>
+          {this.props.user.id === project.user_id ? <button onClick={(event) => this.handleOnDelete(event)} id="delete-button">Delete</button> : ""}
         </div>
         <div className="col-sm-3"></div>
       </div>
@@ -39,4 +48,4 @@ const mapStateToProps = ({projects, auth}, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, { fetchProject })(ProjectShow);
+export default connect(mapStateToProps, { fetchProject, deletePost })(ProjectShow);

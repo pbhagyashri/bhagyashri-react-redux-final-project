@@ -23,6 +23,12 @@ export default (state = {
         [action.project.id]: action.project
       }
 
+    case 'DELETE_PROJECT':
+      return {
+        ...state,
+        projects: state.projects.filter(project => project.id !== parseInt(action.payload))
+      }
+
     default: 
       return state
   }

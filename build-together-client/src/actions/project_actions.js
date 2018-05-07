@@ -115,3 +115,22 @@ export const editProject = (project) => {
     
   }
 }
+
+export const deletePost = (id) => {
+  return dispatch => {
+    fetch(`${API_URL}/projects/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': localStorage.Token,
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(res => res.json())
+    .then( 
+      dispatch({
+      type: 'DELETE_PROJECT',
+      payload: id
+    }))
+    .catch(error => console.log(error))
+  }
+}
