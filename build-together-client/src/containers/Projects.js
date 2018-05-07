@@ -15,8 +15,9 @@ class Projects extends Component {
   render() {
     
     return(
-      <div className="project-container container-fluid">
+      <div className="project-container container-fluid" id="project-element" ref="test">
         <div className="row">
+          <h2>Open Projects</h2>
           <div>
             { this.props.projects.projects.length > 0 ?
               this.props.projects.projects.map((project, index) => <Project project={project} key={index} />) : <p>Not Found</p>

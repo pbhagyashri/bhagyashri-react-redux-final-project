@@ -16,6 +16,13 @@ const fetchProjectById = (project) => {
   }
 }
 
+const editProjectById = (project) => {
+  return {
+    type: 'EDIT_PROJECT',
+    project: project
+  }
+}
+
 export const createProject = (project) => {
   
   return dispatch => {
@@ -84,5 +91,27 @@ export const fetchProject = (id) => {
     .catch(error => {
       console.log(error)
     })
+  }
+}
+
+export const editProject = (project) => {
+  
+  return dispatch => {
+    fetch(`${API_URL}/projects/${project.id}`, {
+      method: "PUT",
+      headers: {
+        'Authorization': localStorage.Token,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({project: project})
+    })
+    .then(res => res.json())
+    .then(response => {
+      dispatch(fetchProjectById(response))
+    })
+    .catch(error => {
+      console.log(error)
+    })
+    
   }
 }

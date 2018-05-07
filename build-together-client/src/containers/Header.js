@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
 import { logout } from '../actions/auth_actions'
 import people from '../people.jpg'
-
+import ReactDOM from 'react-dom'
 class Header extends Component {
 
   handleLogout(event) {
@@ -12,25 +11,27 @@ class Header extends Component {
     this.props.logout();
   }
 
+  handleClick(event){
+    var element = document.getElementById("element-to-scroll-to")
+    element.scrollIntoView()
+  }
+
   render() {
     const LoggedOutnav = (
-      <div className="header-links">
-    
+      <div className="header-links"> 
         <NavLink className="navbar-links" to="/login" exact>Login</NavLink>
-
-        <NavLink className="navbar-links" to="/signup" exact>Signup</NavLink>
-          
+        <NavLink className="navbar-links" to="/signup" exact>Signup</NavLink>       
       </div>
     )
 
     const loggedInNav = (
       <div className="header-links">
-        <div><NavLink className="navbar-links special-link" to="/projects" exact>Check Out Open Projects</NavLink></div>
+        <div>
+          <NavLink onClick={this.handleClick} className="navbar-links special-link" to="/projects" exact>Check Out Open Projects</NavLink>
+        </div>
 
         <NavLink className="navbar-links" to="/" exact>Home</NavLink>
-        
         <NavLink className="navbar-links" to="/projects/new" exact>Create Project</NavLink>
-        
         <NavLink onClick={(event) => this.handleLogout(event)} className="navbar-links" to="/" exact>Logout</NavLink>
         
       </div>
@@ -53,8 +54,8 @@ class Header extends Component {
               {this.props.authenticated ? loggedInNav : LoggedOutnav}
             </div>
           </div>
-        
         </div>
+        <div id="element-to-scroll-to"></div>
       </div>
     )
   }
@@ -65,12 +66,5 @@ function mapStateToProps(state) {
     authenticated: state.auth.authenticated
   }
 }
-
-// const mapDispatchToProps = (dispatch) => {
-//   return bindActionCreators({
-//     loguot: logout
-//   }, dispatch);
-// };
-
 
 export default connect(mapStateToProps, {logout})(Header);

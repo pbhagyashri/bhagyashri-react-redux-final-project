@@ -59,6 +59,8 @@
   color: #f7882f;
 }
 
+
+
 .navbar-links:visited, .navbar-links:active {
   text-decoration: none;
 }
@@ -120,3 +122,13 @@
   margin: 5% 0;
   background-color: #6b7a8f; 
 }
+
+#element-to-scroll-to {
+  background-color: #1f170f;
+  padding: 10px 0;
+}
+
+#element-to-scroll-to h2 {
+  display: none
+}
+
