@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../actions/auth_actions'
 import people from '../people.jpg'
-import ReactDOM from 'react-dom'
 class Header extends Component {
 
   handleLogout(event) {
@@ -12,8 +11,7 @@ class Header extends Component {
   }
 
   handleClick(event){
-    var element = document.getElementById("element-to-scroll-to")
-    element.scrollIntoView()
+    window.scrollTo(0, 800)
   }
 
   render() {
@@ -31,7 +29,7 @@ class Header extends Component {
         </div>
 
         <NavLink className="navbar-links" to="/" exact>Home</NavLink>
-        <NavLink className="navbar-links" to="/projects/new" exact>Create Project</NavLink>
+        <NavLink onClick={this.handleClick} className="navbar-links" to="/projects/new" exact>Create Project</NavLink>
         <NavLink onClick={(event) => this.handleLogout(event)} className="navbar-links" to="/" exact>Logout</NavLink>
         
       </div>

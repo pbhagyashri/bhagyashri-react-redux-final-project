@@ -1,5 +1,6 @@
 export default (state = {
   projects: [],
+  comments: []
 }, action) => {
   switch (action.type) {
     
@@ -27,6 +28,12 @@ export default (state = {
       return {
         ...state,
         projects: state.projects.filter(project => project.id !== parseInt(action.payload))
+      }
+
+    case 'ADD_COMMENTS':
+      return {
+        ...state,
+        comments: action.comments
       }
 
     default: 

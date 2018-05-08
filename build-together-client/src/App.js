@@ -12,6 +12,7 @@ import ProjectForm from './containers/ProjectForm';
 import ProjectShow from './containers/ProjectShow';
 import { getUser } from './actions/auth_actions';
 import ProjectEdit from './containers/ProjectEdit';
+import CommentForm from './containers/CommentForm';
 // import Logout from './containers/Logout'
 
 class App extends Component {
@@ -43,13 +44,14 @@ class App extends Component {
             <header className="App-header">
               
               <Header />
+              <Route path="/" component={Home} />
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
-              <Route path="/" component={Home} />
               <Route exact path={"/projects/new"} component={ProjectForm} />
               <Route exact path={"/projects/:id"} component={ProjectShow} />
               <Route exact path={"/projects/:id/edit"} component={ProjectEdit} />
               <Route exact path="/projects" component={Projects} projects={this.state.projects}/>
+            
             </header>  
           </div>
         </Router>

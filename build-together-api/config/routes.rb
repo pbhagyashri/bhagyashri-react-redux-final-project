@@ -12,5 +12,9 @@ Rails.application.routes.draw do
     resources :projects, only: [:index, :create, :edit, :show, :update, :destroy]
     
     resources :comments, only: [:index, :create, :edit, :show, :update, :destroy]
+
+    resources :projects, only: [:show] do
+      resources :comments, only: [:index]
+    end
   end
 end

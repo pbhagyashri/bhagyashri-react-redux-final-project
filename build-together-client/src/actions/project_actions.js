@@ -10,6 +10,7 @@ const fetchProjectSuccess = (projects) => {
 }
 
 const fetchProjectById = (project) => {
+
   return {
     type: 'GET_PROJECT',
     project: project
@@ -20,6 +21,13 @@ const editProjectById = (project) => {
   return {
     type: 'EDIT_PROJECT',
     project: project
+  }
+}
+
+const fetchComments = (comments) => {
+  return {
+    type: 'ADD_COMMENTS',
+    comments: comments
   }
 }
 
@@ -35,7 +43,6 @@ export const createProject = (project) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({project: project})
-      
     })
     .then(res => res.json())
 
@@ -86,6 +93,7 @@ export const fetchProject = (id) => {
     })
     .then(res => res.json())
     .then(jres => {
+      
       dispatch(fetchProjectById(jres))
     })
     .catch(error => {
@@ -132,5 +140,21 @@ export const deletePost = (id) => {
       payload: id
     }))
     .catch(error => console.log(error))
+  }
+}
+
+export const loadComments = (id) => {
+  return dispatch => {
+    fetch(`${API_URL}/projects/${id}/comments`, {
+      method: 'GET',
+      headers: {
+        'Authorization': localStorage.Token,
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(res => res.json())
+    .then(response => {
+      dispatch(fetchComments(response))
+    })
   }
 }

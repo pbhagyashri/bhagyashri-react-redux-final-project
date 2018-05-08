@@ -1,6 +1,6 @@
 
 class Api::ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :project_comments]
 
   def index
     token = request.env["HTTP_AUTHORIZATION"]
@@ -27,8 +27,14 @@ class Api::ProjectsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  # def project_comments
+
+  #   if !@project.comments.empty?
+  #     render json: @project.comments, status: 200
+  #   else
+  #     render json: {error: {message: "No comments!"}}
+  #   end
+  # end
 
   def update
     if @project.update(project_params)
@@ -49,7 +55,7 @@ class Api::ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name, :technology, :description, :duration, :user_id, :user_name, :github_link)
+    params.require(:project).permit(:name, :technology, :description, :duration, :user_id, :user_name, :github_link, :comments => [])
   end
 
   def set_project
