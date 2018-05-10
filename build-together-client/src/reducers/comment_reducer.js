@@ -1,17 +1,19 @@
 export default (state = {
   title: "",
-  description: ""
+  description: "",
+  project_id: null
   
 }, action) => {
   switch (action.type) {
   
-    case 'CREATE_PROJECT':
-
-    return {
-      ...state,
-      title: action.payload.title,
-      description: action.payload.description
-    }
+    // case 'CREATE_COMMENT':
+    
+    // return {
+    //   ...state,
+    //   title: action.payload.title,
+    //   description: action.payload.description,
+    //   project_id: action.payload.project_id
+    // }
     default: 
       return state
   }

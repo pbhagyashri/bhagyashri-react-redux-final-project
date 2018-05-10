@@ -10,9 +10,10 @@ class Api::CommentsController < ApplicationController
 
   def create
     
-    comment = Comment.new(comment_params)
+    project = Project.find(params[:comment][:project_id])
+    comment = project.comments.build(comment_params)
 
-    if comment
+    if comment.save
       render json: comment, status: 200
     else
       render json: {message: comment.errors}, status: 400

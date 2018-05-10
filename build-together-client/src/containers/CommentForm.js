@@ -2,33 +2,41 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { createComment } from '../actions/comment_actions'
+import { fetchProject, loadComments } from '../actions/project_actions'
+import { Link } from 'react-router-dom'
 
 class CommentForm extends Component {
   constructor(props) {
+    
     super(props);
     
     this.state = {
       title: "",
       description: "",
-      project_id: null
+      project_id: this.props.currentProject.id
     }
   }
 
   handleChange(event) {
-    
     this.setState({
       [event.target.name]: event.target.value
     })
   }
 
   handleOnSubmit(event) {
-
+    
     event.preventDefault();
-    debugger
-    this.props.createComment(this.state);
+
+    if(this.props.createComment(this.state)){
+      this.props.history.replace(`/projects/${this.state.project_id}`)
+    } else {
+      window.alert("sorry")
+    }
+
   }
 
   render() {
+    
     return(
       <div className="row comment-form">
         
@@ -51,10 +59,11 @@ class CommentForm extends Component {
               value={this.state.description}
               className="form-control"
               />
-
+              
               <button type="submit" className="btn custom-btn">Submit</button>
             </div>
           </form>
+          {/* <Link  to={`/projects/${this.props.currentProject.id}`} className="project-show-page-links">Back</Link> */}
         </div>
         
         <div className="col-sm-3"></div>  
@@ -63,12 +72,20 @@ class CommentForm extends Component {
   }
 }
 
-const mapStateToProps = ({projects, new_comment}, ownProps) => {
+const mapStateToProps = (state) => {
+  
   return {
-//     project: projects[ownProps.match.params.id],
-//     comment: new_comment
-
- }
+    commentor: state.auth.user.name,
+    currentProject: state.projects[Object.getOwnPropertyNames(state.projects)[0]]
+  }
 }
 
-export default connect(mapStateToProps, {createComment})(CommentForm)
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    createComment: createComment,
+    fetchProject: fetchProject,
+    // loadComments: loadComments
+  }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CommentForm)

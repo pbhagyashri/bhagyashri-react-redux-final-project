@@ -2,8 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 
 const ProjectShowpage = ({project, currentUser, comments}) => {  
-
-  console.log("Comments", comments)
+  debugger
   return(
 
     <div>
@@ -16,7 +15,7 @@ const ProjectShowpage = ({project, currentUser, comments}) => {
             <h6>Technologies: {project.technology}</h6>
             <h6>Duration: {project.duration}</h6>
             <div>
-              Comments: {comments.map(comment => comment.project_id === project.id ? <p>{comment.title}</p> : "")}
+              Comments: {comments.map((comment, index) => comment.project_id === project.id ? <p key={index}>{comment.title}</p> : "")}
             </div>
           </div>
         : <p>Loading...</p>}

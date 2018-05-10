@@ -22,6 +22,7 @@ export default (state = {
       return {
         ...state,
         [action.project.id]: action.project
+        
       }
 
     case 'DELETE_PROJECT':
@@ -31,9 +32,17 @@ export default (state = {
       }
 
     case 'ADD_COMMENTS':
+
       return {
         ...state,
         comments: action.comments
+      }
+    
+    case 'CREATE_COMMENT':
+  
+      return {
+        ...state,
+        comments: state.comments.concat(action.payload)
       }
 
     default: 

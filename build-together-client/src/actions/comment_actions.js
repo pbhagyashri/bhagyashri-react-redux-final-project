@@ -17,7 +17,7 @@ export const createComment = (comment) => {
     .then(response => {
       
       dispatch({
-        type: 'CREATE_PROJECT',
+        type: 'CREATE_COMMENT',
         payload: response
       })
     })

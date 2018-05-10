@@ -19,7 +19,7 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-
+    
     this.state = { 
       projects: []
     }
@@ -35,6 +35,7 @@ class App extends Component {
   }
 
   render() {
+   
     return (
       
       <div className="App">
@@ -51,7 +52,8 @@ class App extends Component {
               <Route exact path={"/projects/:id"} component={ProjectShow} />
               <Route exact path={"/projects/:id/edit"} component={ProjectEdit} />
               <Route exact path="/projects" component={Projects} projects={this.state.projects}/>
-            
+              <Route exact path="/comments/new" component={CommentForm} />
+
             </header>  
           </div>
         </Router>
@@ -62,9 +64,11 @@ class App extends Component {
   }
 }
 const mapStateToProps = (state) => {
+  
   return {  
     user: state.auth,
-    authenticated: state.auth.authenticated
+    authenticated: state.auth.authenticated,
+    // currentProject: state.projects[Object.getOwnPropertyNames(state.projects)[0]]
   }
 }
 

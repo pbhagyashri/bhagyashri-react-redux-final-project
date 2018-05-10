@@ -5,7 +5,7 @@ const Project = ({project}) => {
   
   return(
     
-    <div className="col-sm-4">
+    <div className="col-md-4">
       { project ? 
         
         <div className="project-card">

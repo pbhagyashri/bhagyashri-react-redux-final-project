@@ -40,7 +40,7 @@ class Header extends Component {
         
         <div className="row">
           
-          <div className="col-sm-8">
+          <div className="col-md-8">
             <img className="header-image" src={people} alt="header"/>
           </div>
           

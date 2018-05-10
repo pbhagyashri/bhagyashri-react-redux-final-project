@@ -10,7 +10,7 @@ const fetchProjectSuccess = (projects) => {
 }
 
 const fetchProjectById = (project) => {
-
+  
   return {
     type: 'GET_PROJECT',
     project: project
@@ -83,6 +83,7 @@ export const fetchProjects = () => {
 }
 
 export const fetchProject = (id) => {
+  
   return dispatch => {
     fetch(`${API_URL}/projects/${id}`, {
       method: "GET",
@@ -154,6 +155,7 @@ export const loadComments = (id) => {
     })
     .then(res => res.json())
     .then(response => {
+    
       dispatch(fetchComments(response))
     })
   }
