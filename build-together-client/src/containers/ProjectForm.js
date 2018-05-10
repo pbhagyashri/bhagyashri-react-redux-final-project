@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { createProject } from '../actions/project_actions'
+import {getUser} from '../actions/auth_actions'
 
 class ProjectForm extends Component {
   
@@ -19,6 +20,15 @@ class ProjectForm extends Component {
     }
   }//constructor
 
+  componentDidMount() {
+  
+    const token = localStorage.Token
+    
+    if(token) {
+      this.props.getUser(token)
+    }
+  }
+
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
@@ -27,7 +37,7 @@ class ProjectForm extends Component {
 
   handleProjectSubmit(event) {
     event.preventDefault()
-  
+    debugger
     this.props.createProject(this.state)
     
     if(this.state.name !== ""){
@@ -97,6 +107,7 @@ class ProjectForm extends Component {
 }
 
 const mapStateToProps = (state) => {
+  
   return {
     user_id: state.auth.user.id,
     user_name: state.auth.user.name
@@ -105,7 +116,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    createProject: createProject
+    createProject: createProject,
+    getUser: getUser
   }, dispatch);
 };
 

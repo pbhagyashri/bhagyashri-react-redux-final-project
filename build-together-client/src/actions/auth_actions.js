@@ -8,12 +8,11 @@ const authRequest = () => {
   }
 }
 
-const authSuccess = (user, token) => {
+const authSuccess = (user) => {
  
   return {
     type: 'USER_AUTHENTICATED',
-    user: user,
-    token: token
+    user: user
   }
 }
 
@@ -63,28 +62,33 @@ export const signupUser = (credentials) => {
 export const authenticate = (credentials) => {
 
   return dispatch => {
-      dispatch(authRequest())
+      //dispatch(authRequest())
     
       return fetch(`${API_URL}/login`, {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify(credentials)
       })
         .then(res => res.json())
         .then((response) => {
-        
+          
           if (response.errors) {
             throw Error(response.errors);
           } else if (response.token){
             
-            const token = response["token"];
+            const token = response.token
             localStorage.setItem('Token', token);
-            return getUser(token)
+            dispatch(authSuccess(response))
+            
+            // return getUser(token)
           }        
         })
-        .then((user) => {
-          dispatch(authSuccess(user, localStorage.Token))
-        })
+        // .then((user) => {
+        //   dispatch(authSuccess(user, localStorage.Token))
+        // })
         .catch( error => {
           console.log(error);
           
@@ -95,17 +99,19 @@ export const authenticate = (credentials) => {
 }
 
 export const getUser = (token) => {
+
   return dispatch => {
     return fetch(`${API_URL}/find_user`, {
       method: 'POST',
-      headers: new Headers({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.Token}`,
-      }),
+      headers: {
+        'Authorization': localStorage.Token,
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({token: token})
     })
     .then((res) => res.json())
-    .then((response, token) => {
+    .then((response) => {
+     
       if (response.errors) {
         throw Error(response.errors);
         
@@ -127,4 +133,3 @@ export const logout = () => {
   
   }
 }
-

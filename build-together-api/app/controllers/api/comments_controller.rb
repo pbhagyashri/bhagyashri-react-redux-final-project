@@ -43,7 +43,7 @@ class Api::CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:title, :description)
+    params.require(:comment).permit(:title, :description, :user_name)
   end
 
 end  

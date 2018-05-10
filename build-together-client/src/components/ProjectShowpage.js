@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import Comment from './Comment'
 
 const ProjectShowpage = ({project, currentUser, comments}) => {  
-
+  
   return(
     
     <div>
@@ -25,7 +25,7 @@ const ProjectShowpage = ({project, currentUser, comments}) => {
             <div className="comment-container">
               <h3>Comments:</h3> 
               {comments.map((comment, index) => comment.project_id === project.id ? 
-              < Comment comment={comment} currentUser={currentUser}/>
+              < Comment comment={comment} />
               : "")} 
             </div>
           </div>

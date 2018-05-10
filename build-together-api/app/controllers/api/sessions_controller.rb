@@ -2,11 +2,15 @@ require 'auth'
 class Api::SessionsController < ApplicationController
 
   def login
+    
     user = User.find_by(email: params[:email])
 
     if user && user.authenticate(params[:password])
       
-      render json: {token: Auth.create_token({name: user.name, username: user.username, id: user.id, email: user.email})}, status: 200
+      token = Auth.create_token({name: user.name, username: user.username, id: user.id, email: user.email})
+      returned_user = Auth.decode_token(token)
+      render json: {name: user.name, username: user.username, id: user.id, email: user.email, token: token}, status: 200
+      #render json: returned_user, status: 200
     else
       render json: {errors: "Email or Password is incorrect"}, status: 500
     end

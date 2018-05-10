@@ -1,4 +1,4 @@
-
+require 'auth'
 class Api::ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy, :project_comments]
 
@@ -17,7 +17,7 @@ class Api::ProjectsController < ApplicationController
   end
 
   def create
-
+    
     project = Project.new(project_params)
     
     if project.save

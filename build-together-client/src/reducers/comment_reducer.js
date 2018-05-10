@@ -1,6 +1,5 @@
 export default (state = {
-  comments: []
-  
+  comments: [],
 }, action) => {
   switch (action.type) {
   
@@ -12,7 +11,7 @@ export default (state = {
       }
     
     case 'CREATE_COMMENT':
-  
+    
       return {
         ...state,
         comments: state.comments.concat(action.payload)

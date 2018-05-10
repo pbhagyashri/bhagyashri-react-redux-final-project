@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { authenticate } from '../actions/auth_actions'
+import { authenticate, getUser } from '../actions/auth_actions'
 
 class Login extends Component {
 
@@ -27,7 +27,7 @@ class Login extends Component {
     
     this.props.authenticate(this.state)
     .then(() => {
-  
+      
       if(this.props.user){
         this.props.history.push("/")
       } else {
@@ -80,17 +80,18 @@ class Login extends Component {
 }
 
 function mapStateToProps(state) {
-
+ 
   return {
     email: state.email,
     password: state.password,
-    user: state.auth.user
+    user: state.auth.user,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    authenticate: authenticate
+    authenticate: authenticate,
+    getUser: getUser
   }, dispatch);
 };
 

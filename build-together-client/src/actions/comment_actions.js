@@ -15,7 +15,7 @@ export const createComment = (comment) => {
     })
     .then(res => res.json())
     .then(response => {
-      
+  
       dispatch({
         type: 'CREATE_COMMENT',
         payload: response

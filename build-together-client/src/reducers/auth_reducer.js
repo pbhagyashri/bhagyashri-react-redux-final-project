@@ -1,10 +1,10 @@
 
 export default (state = {
-  token: null,
   authenticating: false,
   authenticated: false,
   errors: [],
-  user: {}
+  user: {},
+  current_user: ""
 }, action) => {
   switch (action.type) {
     case 'AUTHENTICATE_USER':
@@ -16,12 +16,13 @@ export default (state = {
         token: action.tokenauthenticate
       }
     case 'USER_AUTHENTICATED':
+     
       return {
         ...state,
-        token: action.token,
         authenticated: true,
         authenticating: false,
         user: action.user,
+        current_user: action.user
       }
     case 'AUTHENTICATION_FAILURE':
       return {
@@ -32,6 +33,7 @@ export default (state = {
         errors: action.errors
       }
     case 'LOGGEDIN':
+      
       return {
         ...state,
         user: action.user,

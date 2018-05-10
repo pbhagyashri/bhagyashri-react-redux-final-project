@@ -3,18 +3,20 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { createComment } from '../actions/comment_actions'
 import { fetchProject, loadComments } from '../actions/project_actions'
+import { getUser } from '../actions/auth_actions';
 import { Link } from 'react-router-dom'
 
 class CommentForm extends Component {
   constructor(props) {
-    
+   
     super(props);
-    
+  
     this.state = {
+      
       title: "",
       description: "",
       project_id: this.props.currentProject.id,
-      
+      user_name: this.props.user_name
     }
   }
 
@@ -27,17 +29,12 @@ class CommentForm extends Component {
   handleOnSubmit(event) {
     
     event.preventDefault();
-
-    if(this.props.createComment(this.state)){
-      // this.props.history.replace(`/projects/${this.state.project_id}`)
-    } else {
-      window.alert("sorry")
-    }
-
-    this.setState({
-      title: "",
-      description: ""
-    })
+    this.props.createComment(this.state)
+    
+    // this.setState({
+    //   title: "",
+    //   description: "",
+    // })
 
   }
 
@@ -78,9 +75,8 @@ class CommentForm extends Component {
 }
 
 const mapStateToProps = (state) => {
-  
   return {
-    commentor: state.auth.user.name,
+    user_name: state.auth.user.name,
     currentProject: state.projects[Object.getOwnPropertyNames(state.projects)[0]]
   }
 }
