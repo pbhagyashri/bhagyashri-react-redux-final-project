@@ -1,8 +1,13 @@
 import React from 'react';
 
-const Comment = (props) => {
+const Comment = ({comment}) => {
+  
   return (
-    <div>Single Comment</div>
+    <div className="comment-card">
+     
+      <h4>{comment.title}</h4>
+      <p>{comment.description}</p>
+    </div> 
   )
 }
 

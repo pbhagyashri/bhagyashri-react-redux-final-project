@@ -1,19 +1,23 @@
 export default (state = {
-  title: "",
-  description: "",
-  project_id: null
+  comments: []
   
 }, action) => {
   switch (action.type) {
   
-    // case 'CREATE_COMMENT':
+    case 'ADD_COMMENTS':
+
+      return {
+        ...state,
+        comments: action.comments
+      }
     
-    // return {
-    //   ...state,
-    //   title: action.payload.title,
-    //   description: action.payload.description,
-    //   project_id: action.payload.project_id
-    // }
+    case 'CREATE_COMMENT':
+  
+      return {
+        ...state,
+        comments: state.comments.concat(action.payload)
+      }
+
     default: 
       return state
   }

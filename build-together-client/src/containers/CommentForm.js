@@ -13,7 +13,8 @@ class CommentForm extends Component {
     this.state = {
       title: "",
       description: "",
-      project_id: this.props.currentProject.id
+      project_id: this.props.currentProject.id,
+      
     }
   }
 
@@ -28,10 +29,15 @@ class CommentForm extends Component {
     event.preventDefault();
 
     if(this.props.createComment(this.state)){
-      this.props.history.replace(`/projects/${this.state.project_id}`)
+      // this.props.history.replace(`/projects/${this.state.project_id}`)
     } else {
       window.alert("sorry")
     }
+
+    this.setState({
+      title: "",
+      description: ""
+    })
 
   }
 
@@ -63,7 +69,6 @@ class CommentForm extends Component {
               <button type="submit" className="btn custom-btn">Submit</button>
             </div>
           </form>
-          {/* <Link  to={`/projects/${this.props.currentProject.id}`} className="project-show-page-links">Back</Link> */}
         </div>
         
         <div className="col-sm-3"></div>  
@@ -84,7 +89,6 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     createComment: createComment,
     fetchProject: fetchProject,
-    // loadComments: loadComments
   }, dispatch);
 };
 

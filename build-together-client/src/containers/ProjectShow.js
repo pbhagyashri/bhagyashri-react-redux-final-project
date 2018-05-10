@@ -37,12 +37,9 @@ class ProjectShow extends Component {
       <div className="row">
         <ProjectShowpage project={project} currentUser={user} comments={comments}/>
           
-        {user.id === project.user_id ? <Link key={project.id} to={`/projects/${project.id}/edit`} className="project-show-page-links">Edit Project</Link> : ""}
-        
-        {user.id === project.user_id ? <a href="#" onClick={(event) => this.handleOnDelete(event)} id="delete-button" className="project-show-page-links">Delete</a> : ""}        
+        <CommentForm />
       </div>
       
-      <Link key={project.id} to={'/comments/new'} className="project-show-page-links">Create Comment</Link>
     </div>
     )
   }

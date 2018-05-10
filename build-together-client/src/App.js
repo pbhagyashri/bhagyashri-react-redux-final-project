@@ -52,7 +52,7 @@ class App extends Component {
               <Route exact path={"/projects/:id"} component={ProjectShow} />
               <Route exact path={"/projects/:id/edit"} component={ProjectEdit} />
               <Route exact path="/projects" component={Projects} projects={this.state.projects}/>
-              <Route exact path="/comments/new" component={CommentForm} />
+              {/* <Route exact path="/comments/new" component={CommentForm} /> */}
 
             </header>  
           </div>

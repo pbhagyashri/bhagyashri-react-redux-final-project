@@ -54,17 +54,6 @@
   padding: 5px 7px;
 }
 
-.navbar-links:hover{
-  text-decoration: none;
-  color: #f7882f;
-}
-
-
-
-.navbar-links:visited, .navbar-links:active {
-  text-decoration: none;
-}
-
 .header-image{
   width: 100%;
 }
@@ -73,10 +62,6 @@
   text-align: center;
   margin-top: 180px;
   color: #6b7a8f;
-}
-
-.sub-titles h1, h3 {
-  font-weight: 100;
 }
 
 .sub-titles h5 {
@@ -98,7 +83,8 @@
 }
 
 .create-project-container {
-  background-color: #6b7a8f;
+  background-color: #6985ac;
+  padding: 20px 20px 20px 40px;
 }
 
 .project-card {
@@ -107,7 +93,7 @@
   width: 100%;
   height: 280px;
   margin-top: 5%;
-  background-color: #6b7a8f; 
+  background-color: #6985ac; 
   border-radius: 15px 0px;
 }
 
@@ -115,24 +101,33 @@
   font-weight: bold;
 }
 
-.project-show-card {
-  padding: 20px;
-}
-
 #delete-button {
   margin-bottom: 5%; 
 }
 
-#element-to-scroll-to {
-  background-color: #1f170f;
-  padding: 10px 0;
-}
-
-#element-to-scroll-to h2 {
-  display: none
-}
-
-.project-show-page-links {
+.project-links {
   margin-right: 10px;
-  padding-bottom: 20px;
+  color: #1f170f !important;
+  font-weight: bold;
 }
+
+.comment-container {
+  background-color: #dcc7aa;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.comment-card {
+  background-color: aliceblue;
+  width: 40%;
+  padding: 20px;
+  margin-bottom: 10px;
+  border-radius: 15px;
+}
+
+.comment-form {
+  margin-top: 20px;
+}
+
+
