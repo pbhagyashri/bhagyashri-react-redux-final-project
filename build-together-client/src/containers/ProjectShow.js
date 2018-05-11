@@ -36,7 +36,13 @@ class ProjectShow extends Component {
     <div className="container-fluid create-project-container">
       <div className="row">
         <ProjectShowpage project={project} currentUser={user} comments={comments}/>
-          
+        <div className="linkDiv">
+            {user.id === project.user_id ? <Link key={project.id} to={`/projects/${project.id}/edit`} className="project-links">Edit Project</Link> : ""}
+            
+            {user.id === project.user_id ? <a href="#" onClick={(event) => this.handleOnDelete(event)} id="delete-button" className="project-links">Delete</a> : ""}        
+            <Link key={project.id} to={'/comments/new'} className="project-links">Create Comment</Link>
+
+          </div>  
         <CommentForm />
       </div>
       

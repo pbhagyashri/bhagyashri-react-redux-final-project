@@ -10,17 +10,18 @@ class Projects extends Component {
 
   componentDidMount() {
     this.props.fetchProjects()
+    window.scroll(0, 400);
   }
 
   render() {
-    
+    const { projects } = this.props
     return(
       <div className="project-container container-fluid" id="project-element" ref="test">
         <div className="row">
           <h2>Open Projects</h2>
           <div>
-            { this.props.projects.projects.length > 0 ?
-              this.props.projects.projects.map((project, index) => <Project project={project} key={index} />) : <p>Not Found</p>
+            { projects.projects.length > 0 ?
+              projects.projects.map((project, index) => <Project project={project} key={index} />) : <p>Not Found</p>
             }
           </div>
         </div>
@@ -30,7 +31,7 @@ class Projects extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
+  
   return {
     user: state.auth.user,
     projects: state.projects

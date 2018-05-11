@@ -10,10 +10,6 @@ class Header extends Component {
     this.props.logout();
   }
 
-  handleClick(event){
-    window.scrollTo(0, 800)
-  }
-
   render() {
     const LoggedOutnav = (
       <div className="header-links"> 
@@ -25,11 +21,11 @@ class Header extends Component {
     const loggedInNav = (
       <div className="header-links">
         <div>
-          <NavLink onClick={this.handleClick} className="navbar-links special-link" to="/projects" exact>Check Out Open Projects</NavLink>
+          <NavLink className="navbar-links special-link" to="/projects" exact>Check Out Open Projects</NavLink>
         </div>
 
         <NavLink className="navbar-links" to="/" exact>Home</NavLink>
-        <NavLink onClick={this.handleClick} className="navbar-links" to="/projects/new" exact>Create Project</NavLink>
+        <NavLink className="navbar-links" to="/projects/new" exact>Create Project</NavLink>
         <NavLink onClick={(event) => this.handleLogout(event)} className="navbar-links" to="/" exact>Logout</NavLink>
         
       </div>

@@ -4,6 +4,7 @@
   padding: 30px 20px;
 }
 #logo {
+  color: #6985ac;
   font-family: 'Berkshire Swash', cursive;
   font-size: 2.5em;
 }
@@ -24,7 +25,7 @@
   margin-top: 10px;
   background-color: #1f170f;
   font-weight: 400;
-  color: #6b7a8f;
+  color: #6985ac;
 }
 
 .custom-btn:hover {
@@ -44,7 +45,7 @@
   display: inline-block;
   text-decoration: none;
   border-radius: 6px;
-  color: #6b7a8f;
+  color: #6985ac;
   margin-right: 18px;
   margin-top: 30px; 
 }
@@ -61,7 +62,7 @@
 .sub-titles {
   text-align: center;
   margin-top: 180px;
-  color: #6b7a8f;
+  color: #6985ac;
 }
 
 .sub-titles h5 {
@@ -72,7 +73,7 @@
   width: 170px;
   height: 2px;
   margin: 10px;
-  background-color: #6b7a8f;
+  background-color: #6985ac;
   display: inline-block;
   text-align: center;
 }

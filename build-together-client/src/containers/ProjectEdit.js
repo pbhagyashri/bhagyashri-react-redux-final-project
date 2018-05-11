@@ -19,19 +19,17 @@ class ProjectEdit extends Component {
   }
 
   componentDidMount() {
-    if(this.props.projects.length > 0) {
+    
+    const { project } = this.props
+    
+    this.setState({
+      id: project.id,
+      name: project.name,
+      technology: project.technology,
+      description: project.description,
+      duration: project.duration
+    })
       
-      const projectToEdit = this.props.projects.filter(project => project.id === parseInt(this.props.match.params.id))["0"]
-
-      this.setState({
-        id: projectToEdit.id,
-        name: projectToEdit.name,
-        technology: projectToEdit.technology,
-        description: projectToEdit.description,
-        duration: projectToEdit.duration
-      })
-      
-    } 
   }
 
   handleChange(event) {
@@ -102,9 +100,9 @@ class ProjectEdit extends Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps({ projects }) {
   return {
-    projects: state.projects.projects
+    project: projects[Object.getOwnPropertyNames(projects)[0]]
   }
 }
 

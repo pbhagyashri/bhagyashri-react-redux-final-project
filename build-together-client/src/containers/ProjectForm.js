@@ -23,7 +23,7 @@ class ProjectForm extends Component {
   componentDidMount() {
   
     const token = localStorage.Token
-    
+    window.scroll(0, 400);
     if(token) {
       this.props.getUser(token)
     }
