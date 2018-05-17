@@ -42,10 +42,14 @@ class Login extends Component {
     
   }
 
+  componentDidMount() {
+    window.scroll(0, 400)
+  }
+
   render() {
     
     return (
-      <div className="custom-container row">
+      <div className="custom-container row create-project-container">
         <div className="col-sm-4"></div>
         <div className="col-sm-4">
           <form onSubmit={(event) => this.handleOnLogin(event)}>

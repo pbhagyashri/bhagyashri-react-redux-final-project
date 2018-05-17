@@ -17,13 +17,6 @@ const fetchProjectById = (project) => {
   }
 }
 
-const editProjectById = (project) => {
-  return {
-    type: 'EDIT_PROJECT',
-    project: project
-  }
-}
-
 const fetchComments = (comments) => {
   return {
     type: 'ADD_COMMENTS',
@@ -73,10 +66,16 @@ export const fetchProjects = () => {
     })
     .then(res => res.json())
     .then(jsonres => {
+     
+      if (jsonres.error) {
+        throw Error(jsonres.error);
+      } else{
       dispatch(fetchProjectSuccess(jsonres))
+      }
     })
     .catch( error => {
       console.log(error)
+      window.alert("You must be logged in to view all projects")
     })
 
   }
@@ -94,11 +93,15 @@ export const fetchProject = (id) => {
     })
     .then(res => res.json())
     .then(jres => {
-      
-      dispatch(fetchProjectById(jres))
+      if (jres.error) {
+        throw Error(jres.error);
+      } else{
+        dispatch(fetchProjectById(jres))
+      }
     })
     .catch(error => {
       console.log(error)
+      window.alert("You must be logged in to view project")
     })
   }
 }
@@ -157,6 +160,24 @@ export const loadComments = (id) => {
     .then(response => {
     
       dispatch(fetchComments(response))
+    })
+  }
+}
+
+export const editComment = (comment) => {
+  
+  return dispatch => {
+    return fetch(`${API_URL}/comments/${comment.id}`, {
+      method: "PUT",
+      headers: {
+        'Authorization': localStorage.Token,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({comment: comment})
+    })
+    .then(res => res.json())
+    .then(response => {
+      
     })
   }
 }

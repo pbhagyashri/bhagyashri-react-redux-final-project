@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 import { createComment } from '../actions/comment_actions'
 import { fetchProject, deletePost, loadComments } from '../actions/project_actions'
 
+import Comment from '../components/Comment'
+
 import CommentForm from './CommentForm'
 
 class ProjectShow extends Component {
@@ -39,9 +41,13 @@ class ProjectShow extends Component {
         <div className="linkDiv">
             {user.id === project.user_id ? <Link key={project.id} to={`/projects/${project.id}/edit`} className="project-links">Edit Project</Link> : ""}
             
-            {user.id === project.user_id ? <a href="#" onClick={(event) => this.handleOnDelete(event)} id="delete-button" className="project-links">Delete</a> : ""}        
-            <Link key={project.id} to={'/comments/new'} className="project-links">Create Comment</Link>
-
+            {user.id === project.user_id ? <a href="#" onClick={(event) => this.handleOnDelete(event)} id="delete-button" className="project-links">Delete Project</a> : ""}        
+            <div className="comment-container">
+              <h3>Comments:</h3> 
+              {this.props.comments.map((comment, index) => comment.project_id === project.id ? 
+              < Comment comment={comment} />
+              : "")} 
+            </div>
           </div>  
         <CommentForm />
       </div>

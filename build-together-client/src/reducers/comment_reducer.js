@@ -17,6 +17,13 @@ export default (state = {
         comments: state.comments.concat(action.payload)
       }
 
+    case 'EDIT_COMMENT':
+
+      // return {
+      //   ...state,
+      //   comments: action
+      // }
+
     default: 
       return state
   }

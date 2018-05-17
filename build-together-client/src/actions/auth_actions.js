@@ -2,12 +2,6 @@ import fetch from 'isomorphic-fetch';
 
 const API_URL = "http://192.168.1.190:3001/api"
 
-const authRequest = () => {
-  return {
-    type: 'AUTHENTICATE_USER',
-  }
-}
-
 const authSuccess = (user) => {
  
   return {
@@ -31,24 +25,22 @@ const authFailure = (errors) => {
   }
 }
 
-export const signupUser = (credentials) => {
-
+export const signupUser = (user) => {
+  
   return dispatch => {
     
     return fetch(`${API_URL}/signup`, {
       
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(credentials)
+      body: JSON.stringify({user: user})
     })
     .then(res => res.json())
     .then(response => {
+      
       const token = response["token"];
       localStorage.setItem('Token', token);
-      return getUser(token)
-    })
-    .then((user) => {
-      dispatch(authSuccess(user, localStorage.Token))
+      dispatch(authSuccess(response)) 
     })
     .catch( error => {
       console.log(error);
@@ -62,7 +54,6 @@ export const signupUser = (credentials) => {
 export const authenticate = (credentials) => {
 
   return dispatch => {
-      //dispatch(authRequest())
     
       return fetch(`${API_URL}/login`, {
         method: 'POST',
@@ -78,17 +69,13 @@ export const authenticate = (credentials) => {
           if (response.errors) {
             throw Error(response.errors);
           } else if (response.token){
-            
+
             const token = response.token
             localStorage.setItem('Token', token);
-            dispatch(authSuccess(response))
-            
-            // return getUser(token)
+            dispatch(authSuccess(response)) 
           }        
         })
-        // .then((user) => {
-        //   dispatch(authSuccess(user, localStorage.Token))
-        // })
+      
         .catch( error => {
           console.log(error);
           

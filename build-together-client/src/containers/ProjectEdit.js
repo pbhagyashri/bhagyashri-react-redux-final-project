@@ -100,7 +100,7 @@ class ProjectEdit extends Component {
   }
 }
 
-function mapStateToProps({ projects }) {
+const mapStateToProps = ({ projects }) => {
   return {
     project: projects[Object.getOwnPropertyNames(projects)[0]]
   }

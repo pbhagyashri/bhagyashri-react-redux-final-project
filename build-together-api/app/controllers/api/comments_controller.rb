@@ -1,5 +1,7 @@
 class Api::CommentsController < ApplicationController
 
+  before_action :set_comment, only: [:show, :edit, :update, :destroy]
+
   def index
     render json: Comment.all, status: 200
   end
@@ -21,6 +23,7 @@ class Api::CommentsController < ApplicationController
   end
 
   def update
+    
     if @comment.update(comment_params)
       render json: @comment
     else

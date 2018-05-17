@@ -25,13 +25,15 @@ class Signup extends Component {
   handleOnSubmit(event) {
     event.preventDefault()
     this.props.signupUser(this.state);
+    this.props.history.replace('/projects')
   }
 
   render() {
     return (
-        <div className="custom-container row">
+        <div className="custom-container row create-project-container">
           <div className="col-sm-4"></div>
           <div className="col-sm-4">
+            <h2> Signup </h2>
             <form onSubmit={(event) => this.handleOnSubmit(event)}>
               <label>Name:</label>
               <input

@@ -15,11 +15,11 @@ class Api::UsersController < ApplicationController
   end
 
   def signup
-    user = User.new({name: params["name"], username: params["username"], email: params["email"], password: params["password"]})
+    
+    user = User.new(user_params)
     
     if user.save
-      render json: {token: Auth.create_token({id: user.id, name: user.name, username: user.username, email: user.email})}
-      #render json: user, status: 200
+      render json: {token: Auth.create_token({id: user.id, name: user.name, username: user.username, email: user.email})}, status: 200
     else
       render json: {message: user.errors}, status: 400
     end

@@ -37,7 +37,6 @@ class ProjectForm extends Component {
 
   handleProjectSubmit(event) {
     event.preventDefault()
-    debugger
     this.props.createProject(this.state)
     
     if(this.state.name !== ""){

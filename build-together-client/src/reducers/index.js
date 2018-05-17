@@ -8,6 +8,6 @@ export const rootReducer = combineReducers({
   auth: auth_reducer,
   new_project: create_project_reducer,
   projects: project_reducer,
-  new_comment: comment_reducer
+  all_comments: comment_reducer
 });
 

@@ -1,58 +1,71 @@
 require 'auth'
 class Api::ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy, :project_comments]
+  
 
-  def index
-    token = request.env["HTTP_AUTHORIZATION"]
-
-    if token && Auth.decode_token(token)
-      render json: Project.all
+  def index    
+    if user_logged_in?
+      render json: Project.all, status: 200
     else
       render json: {error: {message: "You must be loggedin"}}
     end
   end
 
   def show
-    render json: @project
+    if user_logged_in? && @project
+      render json: @project
+    else
+      render json: {error: {message: "You must be loggedin"}}
+    end
   end
 
   def create
-    
-    project = Project.new(project_params)
-    
-    if project.save
-      render json: project, status: 200
+    if user_logged_in?
+      project = Project.new(project_params)
+      
+      if project.save
+        render json: project, status: 200
+      else
+        render json: {message: project.errors}, status: 400
+      end
     else
-      render json: {message: project.errors}, status: 400
+      render json: {error: {message: "You must be loggedin"}}
     end
   end
 
-  # def project_comments
-
-  #   if !@project.comments.empty?
-  #     render json: @project.comments, status: 200
-  #   else
-  #     render json: {error: {message: "No comments!"}}
-  #   end
-  # end
-
   def update
-    if @project.update(project_params)
-      render json: @project
-    else
-      render json: {message: @project.errors}, status: 400
+
+    if user_logged_in? && current_user["id"] == @project.id
+      if @project.update(project_params)
+        render json: @project
+      else
+        render json: {message: @project.errors}, status: 400
+      end
     end
+  
   end
 
   def destroy
-    if @project.destroy
-      render status: 204
-    else
-      render json: {message: "unable to process your request"}, status: 400
+    if user_logged_in? && current_user["id"] == @project.id
+      if @project.destroy
+        render status: 204
+      else
+        render json: {message: "unable to process your request"}, status: 400
+      end
     end
   end
 
   private
+
+  def user_logged_in?
+    token = request.env["HTTP_AUTHORIZATION"]
+    token && Auth.decode_token(token) ? true : false
+  end
+
+  def current_user
+    token = request.env["HTTP_AUTHORIZATION"]
+    token && Auth.decode_token(token) ? Auth.decode_token(token)[0]["user"] : false
+  end
 
   def project_params
     params.require(:project).permit(:name, :technology, :description, :duration, :user_id, :user_name, :github_link, :comments => [])

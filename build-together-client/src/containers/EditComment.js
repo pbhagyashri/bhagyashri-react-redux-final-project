@@ -1,21 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { createComment } from '../actions/comment_actions'
-import { fetchProject } from '../actions/project_actions'
 
-class CommentForm extends Component {
+import { editComment } from '../actions/project_actions'
+
+class EditComment extends Component {
   constructor(props) {
-   
     super(props);
-  
+
     this.state = {
-      
+      id: null,
       title: "",
       description: "",
-      project_id: this.props.currentProject.id,
-      user_name: this.props.user_name
+      user_id: this.props.user_id,
+      project_id: null
     }
+  }
+
+  componentDidMount() {
+    const { comment } = this.props
+
+    this.setState({
+      id: comment.id,
+      title: comment.title,
+      description: comment.description,
+      project_id: comment.project_id
+    })
   }
 
   handleChange(event) {
@@ -23,26 +33,20 @@ class CommentForm extends Component {
       [event.target.name]: event.target.value
     })
   }
-
-  handleOnSubmit(event) {
-    
-    event.preventDefault();
-    this.props.createComment(this.state)
-    
-    this.setState({
-      title: "",
-      description: "",
-    })
+  
+  handleSubmit(event) {
+    event.preventDefault()
+    this.props.editComment(this.state)
+    this.props.history.replace(`/projects/${this.state.project_id}`)
   }
 
+
   render() {
-    
     return(
-      <div className="row comment-form">
-        
+      <div className="row comment-form create-project-container">
+        <h3>Edit Comment</h3>
         <div className="col-sm-7">
-          <h2>Write a Comment!</h2>
-          <form onSubmit={(event) => this.handleOnSubmit(event)}>
+          <form onSubmit={(event) => this.handleSubmit(event)}>
             <div className="form-group">
               <label>Title</label>
               <input 
@@ -72,18 +76,17 @@ class CommentForm extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ auth, all_comments }, ownProps) => {
   return {
-    user_name: state.auth.user.name,
-    currentProject: state.projects[Object.getOwnPropertyNames(state.projects)[0]]
+    user_id: auth.user.id,
+    comment: all_comments.comments.filter(comment => comment.id === parseInt(ownProps.match.params.id))[0]
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    createComment: createComment,
-    fetchProject: fetchProject,
+    editComment: editComment
   }, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CommentForm)
+export default connect(mapStateToProps, mapDispatchToProps)(EditComment);
