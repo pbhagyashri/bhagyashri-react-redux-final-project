@@ -8,6 +8,7 @@ import { fetchProject, deletePost, loadComments } from '../actions/project_actio
 import Comment from '../components/Comment'
 
 import CommentForm from './CommentForm'
+import Footer from '../components/Footer';
 
 class ProjectShow extends Component {
 
@@ -35,24 +36,24 @@ class ProjectShow extends Component {
     }
 
     return (
-    <div className="container-fluid create-project-container">
-      <div className="row">
-        <ProjectShowpage project={project} currentUser={user} comments={comments}/>
-        <div className="linkDiv">
-            {user.id === project.user_id ? <Link key={project.id} to={`/projects/${project.id}/edit`} className="project-links">Edit Project</Link> : ""}
-            
-            {user.id === project.user_id ? <a href="#" onClick={(event) => this.handleOnDelete(event)} id="delete-button" className="project-links">Delete Project</a> : ""}        
-            <div className="comment-container">
-              <h3>Comments:</h3> 
-              {this.props.comments.map((comment, index) => comment.project_id === project.id ? 
-              < Comment comment={comment} />
-              : "")} 
-            </div>
-          </div>  
-        <CommentForm />
+    <div>
+      <div className="container-fluid create-project-container">
+        <div className="row">
+          <ProjectShowpage project={project} currentUser={user} comments={comments}/>
+          <div className="linkDiv">
+              {user.id === project.user_id ? <Link key={project.id} to={`/projects/${project.id}/edit`} className="project-links">Edit Project</Link> : ""}
+              
+              {user.id === project.user_id ? <a href="#" onClick={(event) => this.handleOnDelete(event)} id="delete-button" className="project-links">Delete Project</a> : ""}        
+              <div className="comment-container">
+                <h3>Comments:</h3> 
+                {this.props.comments.map((comment, index) => comment.project_id === project.id ? 
+                < Comment comment={comment} />
+                : "")} 
+              </div>
+            </div>  
+        </div>
       </div>
-      
-    </div>
+    </div>    
     )
   }
 }

@@ -19,7 +19,13 @@ class Api::UsersController < ApplicationController
     user = User.new(user_params)
     
     if user.save
-      render json: {token: Auth.create_token({id: user.id, name: user.name, username: user.username, email: user.email})}, status: 200
+      # render json: {token: Auth.create_token({id: user.id, name: user.name, username: user.username, email: user.email})}, status: 200
+
+      token = Auth.create_token({name: user.name, username: user.username, id: user.id, email: user.email})
+      
+      returned_user = Auth.decode_token(token)
+
+      render json: {name: user.name, username: user.username, id: user.id, email: user.email, token: token}, status: 200
     else
       render json: {message: user.errors}, status: 400
     end

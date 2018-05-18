@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { logout } from '../actions/auth_actions'
-import people from '../people.jpg'
-class Header extends Component {
+import { BrowserRouter as Router, Route} from 'react-router-dom';
 
-  handleLogout(event) {
-    event.preventDefault();
-    this.props.logout();
-  }
+import { connect } from 'react-redux';
+import people from '../people.jpg'
+import Logout from './Logout'
+class Header extends Component {
 
   render() {
     const LoggedOutnav = (
@@ -25,15 +22,13 @@ class Header extends Component {
         </div>
 
         <NavLink className="navbar-links" to="/" exact>Home</NavLink>
-        <NavLink className="navbar-links" to="/projects/new" exact>Create Project</NavLink>
-        <NavLink onClick={(event) => this.handleLogout(event)} className="navbar-links" to="/" exact>Logout</NavLink>
-        
+        <NavLink className="navbar-links" to="/projects/new" exact>Create Project</NavLink>     
+        <Route path="/" component={Logout} />
       </div>
     )
 
     return(
       <div>
-        
         <div className="row">
           
           <div className="col-md-8">
@@ -48,6 +43,7 @@ class Header extends Component {
               {this.props.authenticated ? loggedInNav : LoggedOutnav}
             </div>
           </div>
+        
         </div>
         <div id="element-to-scroll-to"></div>
       </div>
@@ -61,4 +57,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, {logout})(Header);
+export default connect(mapStateToProps)(Header);

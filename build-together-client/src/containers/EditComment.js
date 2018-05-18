@@ -40,7 +40,6 @@ class EditComment extends Component {
     this.props.history.replace(`/projects/${this.state.project_id}`)
   }
 
-
   render() {
     return(
       <div className="row comment-form create-project-container">

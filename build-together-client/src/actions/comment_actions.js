@@ -1,12 +1,5 @@
 const API_URL = "http://192.168.1.190:3001/api"
 
-const editCommentSuccess = (comment) => {
-  return {
-    type: 'EDIT_COMMENT',
-    comment: comment
-  }
-}
-
 export const createComment = (comment) => {
   
   return dispatch => {

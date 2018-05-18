@@ -16,7 +16,7 @@ export default (state = {
         token: action.tokenauthenticate
       }
     case 'USER_AUTHENTICATED':
-     
+      
       return {
         ...state,
         authenticated: true,

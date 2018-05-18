@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { fetchProjects } from '../actions/project_actions'
 
 import Project from '../components/Project'
+import Footer from '../components/Footer'
 
 class Projects extends Component {
 
@@ -16,15 +17,22 @@ class Projects extends Component {
   render() {
     const { projects } = this.props
     return(
-      <div className="project-container container-fluid" id="project-element" ref="test">
-        <div className="row">
-          <h2>Open Projects</h2>
-          <div>
-            { projects.projects.length > 0 ?
-              projects.projects.map((project, index) => <Project project={project} key={index} />) : <p>Not Found</p>
-            }
+      <div>
+        <div className="create-project-container container-fluid" id="project-element" ref="test">
+          <div className="row">
+            <h2>Open Projects</h2>
+            <div>
+              { projects.projects.length > 0 ?
+                projects.projects.map((project, index) => <Project project={project} key={index} />) : <p>Not Found</p>
+              }
+            </div>
           </div>
         </div>
+        
+        <div className="row">
+          <Footer />
+        </div>
+      
       </div>
     )
   }

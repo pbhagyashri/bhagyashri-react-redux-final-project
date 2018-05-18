@@ -37,7 +37,6 @@ export const signupUser = (user) => {
     })
     .then(res => res.json())
     .then(response => {
-      
       const token = response["token"];
       localStorage.setItem('Token', token);
       dispatch(authSuccess(response)) 

@@ -20,7 +20,7 @@ class Api::ProjectsController < ApplicationController
   end
 
   def create
-    if user_logged_in?
+      
       project = Project.new(project_params)
       
       if project.save
@@ -28,20 +28,18 @@ class Api::ProjectsController < ApplicationController
       else
         render json: {message: project.errors}, status: 400
       end
-    else
-      render json: {error: {message: "You must be loggedin"}}
-    end
   end
 
   def update
 
-    if user_logged_in? && current_user["id"] == @project.id
+    # if user_logged_in? && current_user["id"] == @project.id
+      
       if @project.update(project_params)
         render json: @project
       else
         render json: {message: @project.errors}, status: 400
       end
-    end
+    # end
   
   end
 

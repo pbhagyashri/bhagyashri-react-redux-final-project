@@ -13,6 +13,7 @@ class ProjectEdit extends Component {
       technology: "",
       description: "",
       duration: "",
+      github_link: "",
       user_id: this.props.user_id,
       user_name: this.props.user_name 
     }
@@ -21,13 +22,14 @@ class ProjectEdit extends Component {
   componentDidMount() {
     
     const { project } = this.props
-    
+  
     this.setState({
       id: project.id,
       name: project.name,
       technology: project.technology,
       description: project.description,
-      duration: project.duration
+      duration: project.duration,
+      github_link: project.github_link
     })
       
   }
@@ -40,7 +42,6 @@ class ProjectEdit extends Component {
 
   handleProjectSubmit(event) {
     event.preventDefault()
-    
     this.props.editProject(this.state)
     this.props.history.replace(`/projects/${this.state.id}`)
   }
@@ -90,6 +91,16 @@ class ProjectEdit extends Component {
             type="text" 
             placeholder="Please enter the duration of your project"
             value={this.state.duration}
+            />
+
+            <label>Github Link:</label>
+            <input 
+            onChange={(event) => this.handleChange(event)}
+            name="github_link"
+            className="form-control"
+            type="text" 
+            placeholder="Please add the link to your project on Github"
+            value={this.state.github_link}
             />
 
             <button type="submit" className="btn custom-btn">Submit</button>

@@ -11,8 +11,13 @@ class Signup extends Component {
       name: "",
       username: "",
       email: "",
-      password: ""
+      password: "",
+      user: {}
     }
+  }
+
+  componentDidMount() {
+    window.scroll(0, 400)
   }
 
   handleChange(event) {
@@ -25,7 +30,7 @@ class Signup extends Component {
   handleOnSubmit(event) {
     event.preventDefault()
     this.props.signupUser(this.state);
-    this.props.history.replace('/projects')
+    this.props.history.replace('/')
   }
 
   render() {
@@ -84,11 +89,11 @@ class Signup extends Component {
 function mapStateToProps(state) {
   
   return {
-    name: state.name,
-    username: state.username,
-    email: state.email,
-    password: state.password,
-    
+    // name: state.name,
+    // username: state.username,
+    // email: state.email,
+    // password: state.password,
+    user: state.auth.user
   }
 }
 

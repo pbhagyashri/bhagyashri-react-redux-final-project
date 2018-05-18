@@ -14,6 +14,10 @@ class Login extends Component {
       user: {}
     }
   }
+
+  componentDidMount() {
+    window.scroll(0, 400)
+  }
   
   handleChange(event) {
     this.setState({
@@ -86,8 +90,8 @@ class Login extends Component {
 function mapStateToProps(state) {
  
   return {
-    email: state.email,
-    password: state.password,
+    // email: state.email,
+    // password: state.password,
     user: state.auth.user,
   }
 }

@@ -6,14 +6,14 @@ import { fetchProject } from '../actions/project_actions'
 
 class CommentForm extends Component {
   constructor(props) {
-   
+    
     super(props);
   
     this.state = {
       
       title: "",
       description: "",
-      project_id: this.props.currentProject.id,
+      project_id: this.props.project_id,
       user_name: this.props.user_name
     }
   }
@@ -38,44 +38,48 @@ class CommentForm extends Component {
   render() {
     
     return(
-      <div className="row comment-form">
-        
-        <div className="col-sm-7">
-          <h2>Write a Comment!</h2>
-          <form onSubmit={(event) => this.handleOnSubmit(event)}>
-            <div className="form-group">
-              <label>Title</label>
-              <input 
-              type="text"
-              onChange={(event) => this.handleChange(event)}
-              name="title"
-              value={this.state.title}
-              className="form-control"
-              />
+      <div className="container-fluid create-project-container">
+        <div className="row comment-form">
+          <div className="row">
+            <div className="col-sm-7">
+              <h2>Write a Comment!</h2>
+              <form onSubmit={(event) => this.handleOnSubmit(event)}>
+                <div className="form-group">
+                  <label>Title</label>
+                  <input 
+                  type="text"
+                  onChange={(event) => this.handleChange(event)}
+                  name="title"
+                  value={this.state.title}
+                  className="form-control"
+                  />
 
-              <label>Description</label>
-              <textarea 
-              onChange={(event) => this.handleChange(event)}
-              name="description"
-              value={this.state.description}
-              className="form-control"
-              />
-              
-              <button type="submit" className="btn custom-btn">Submit</button>
+                  <label>Description</label>
+                  <textarea 
+                  onChange={(event) => this.handleChange(event)}
+                  name="description"
+                  value={this.state.description}
+                  className="form-control"
+                  />
+                  
+                  <button type="submit" className="btn custom-btn">Submit</button>
+                </div>
+              </form>
             </div>
-          </form>
+          </div>
+          
+          <div className="col-sm-3"></div>  
         </div>
-        
-        <div className="col-sm-3"></div>  
       </div>
     )
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({auth, projects}, ownProps) => {
+  
   return {
-    user_name: state.auth.user.name,
-    currentProject: state.projects[Object.getOwnPropertyNames(state.projects)[0]]
+    user_name: auth.user.name,
+    project_id: ownProps.match.params.id
   }
 }
 

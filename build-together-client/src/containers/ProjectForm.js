@@ -15,15 +15,15 @@ class ProjectForm extends Component {
       technology: "",
       description: "",
       duration: "",
+      github_link: "",
       user_id: this.props.user_id,
       user_name: this.props.user_name 
     }
   }//constructor
 
   componentDidMount() {
-  
-    const token = localStorage.Token
     window.scroll(0, 400);
+    const token = localStorage.Token
     if(token) {
       this.props.getUser(token)
     }
@@ -94,6 +94,16 @@ class ProjectForm extends Component {
             placeholder="Please enter the duration of your project"
             value={this.props.duration}
             />
+            
+            <label>Github Link:</label>
+            <input 
+            onChange={(event) => this.handleChange(event)}
+            name="github_link"
+            className="form-control"
+            type="text" 
+            placeholder="Please add the link to your project on Github"
+            value={this.props.github}
+            />
 
             <button type="submit" className="btn custom-btn">Submit</button>
           </div>
@@ -106,7 +116,6 @@ class ProjectForm extends Component {
 }
 
 const mapStateToProps = (state) => {
-  
   return {
     user_id: state.auth.user.id,
     user_name: state.auth.user.name

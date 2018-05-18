@@ -10,7 +10,7 @@ const fetchProjectSuccess = (projects) => {
 }
 
 const fetchProjectById = (project) => {
-  
+
   return {
     type: 'GET_PROJECT',
     project: project
@@ -40,6 +40,7 @@ export const createProject = (project) => {
     .then(res => res.json())
 
     .then(response => {
+      debugger
       if (project.message) {
         throw Error(project.message.name, project.message.user);
       } else{
@@ -101,13 +102,11 @@ export const fetchProject = (id) => {
     })
     .catch(error => {
       console.log(error)
-      window.alert("You must be logged in to view project")
     })
   }
 }
 
 export const editProject = (project) => {
-  
   return dispatch => {
     fetch(`${API_URL}/projects/${project.id}`, {
       method: "PUT",
