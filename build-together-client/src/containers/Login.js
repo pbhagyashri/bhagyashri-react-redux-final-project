@@ -46,10 +46,6 @@ class Login extends Component {
     
   }
 
-  componentDidMount() {
-    window.scroll(0, 400)
-  }
-
   render() {
     
     return (

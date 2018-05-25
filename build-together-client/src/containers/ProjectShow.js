@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
 import { connect } from 'react-redux';
 import ProjectShowpage from '../components/ProjectShowpage'
 import { Link } from 'react-router-dom'
@@ -8,7 +9,6 @@ import { fetchProject, deletePost, loadComments } from '../actions/project_actio
 import Comment from '../components/Comment'
 
 import CommentForm from './CommentForm'
-import Footer from '../components/Footer';
 
 class ProjectShow extends Component {
 
@@ -47,11 +47,12 @@ class ProjectShow extends Component {
               <div className="comment-container">
                 <h3>Comments:</h3> 
                 {this.props.comments.map((comment, index) => comment.project_id === project.id ? 
-                < Comment comment={comment} />
+                < Comment comment={comment} key={comment.id}/>
                 : "")} 
               </div>
             </div>  
         </div>
+        <Route path="/projects/:id" component={CommentForm} />
       </div>
     </div>    
     )

@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
-
 import { connect } from 'react-redux';
 import people from '../people.jpg'
 import Logout from './Logout'
+
 class Header extends Component {
 
   render() {

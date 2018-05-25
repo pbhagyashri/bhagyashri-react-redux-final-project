@@ -49,7 +49,7 @@ class ProjectEdit extends Component {
   render() {
     
     return (
-      <div>
+      <div className="create-project-container">
         <h1>Edit Project</h1>
         <form onSubmit={(event) => this.handleProjectSubmit(event)}>
            <div className="form-group">
@@ -111,9 +111,11 @@ class ProjectEdit extends Component {
   }
 }
 
-const mapStateToProps = ({ projects }) => {
+const mapStateToProps = ({ projects }, ownProps) => {
+  const project = projects[ownProps.match.params.id]
+  
   return {
-    project: projects[Object.getOwnPropertyNames(projects)[0]]
+    project: project
   }
 }
 

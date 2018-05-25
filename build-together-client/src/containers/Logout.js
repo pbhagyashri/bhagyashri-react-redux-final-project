@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { logout } from '../actions/auth_actions'
 
 class Logout extends Component {
@@ -18,11 +17,5 @@ class Logout extends Component {
     )
   }
 }
-
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    loguot: logout
-  }, dispatch);
-};
 
 export default connect(null, {logout})(Logout);
