@@ -47,12 +47,7 @@ export default (state = {
         ...state,
         comments: state.comments.concat(action.payload)
       }
-    // case 'ADD_LIKE':
-    //   const project = state.projects.filter(project => project.id === action.like.id)[0]
-    //   return {
-    //     ...state
-    //   }
-  
+    
     default: 
       return state
   }
