@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
     resources :projects, only: [:show] do
       resources :comments, only: [:index]
+      resources :likes, only: [:create]
     end
   end
 end

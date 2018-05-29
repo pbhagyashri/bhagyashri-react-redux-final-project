@@ -24,7 +24,14 @@ const fetchComments = (comments) => {
   }
 }
 
-export const createProject = (project) => {
+const fetchLikes = (like) => {
+  return {
+    type : 'ADD_LIKE',
+    like: like
+  }
+}
+
+export const createProject = (project, history) => {
   
   return dispatch => {
 
@@ -40,10 +47,10 @@ export const createProject = (project) => {
     .then(res => res.json())
 
     .then(response => {
-      debugger
       if (project.message) {
         throw Error(project.message.name, project.message.user);
       } else{
+        history.push("/projects")
       dispatch({
         type: 'ADD_PROJECT',
         payload: response
@@ -157,26 +164,24 @@ export const loadComments = (id) => {
     })
     .then(res => res.json())
     .then(response => {
-    
       dispatch(fetchComments(response))
     })
   }
 }
 
-export const editComment = (comment) => {
-  
+export const addLike = (like) => {
   return dispatch => {
-    return fetch(`${API_URL}/comments/${comment.id}`, {
-      method: "PUT",
+    return  fetch(`${API_URL}/projects/${like.project_id}/likes`, {
+      method: "Post",
       headers: {
-        'Authorization': localStorage.Token,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({comment: comment})
+       'Authorization': localStorage.Token,
+       'Content-Type': 'application/json',
+     },
+     body: JSON.stringify({like: like})
     })
     .then(res => res.json())
-    .then(response => {
-      
+    .then(json => {
+      dispatch(fetchProjects())
     })
   }
 }

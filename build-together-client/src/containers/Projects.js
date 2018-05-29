@@ -10,12 +10,14 @@ import Footer from '../components/Footer'
 class Projects extends Component {
 
   componentDidMount() {
+    
     this.props.fetchProjects()
     window.scroll(0, 400);
   }
 
   render() {
     const { projects } = this.props
+    
     return(
       <div>
         <div className="create-project-container container-fluid" id="project-element" ref="test">

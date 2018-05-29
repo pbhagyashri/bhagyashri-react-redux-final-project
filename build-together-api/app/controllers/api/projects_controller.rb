@@ -1,11 +1,12 @@
 require 'auth'
 class Api::ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy, :project_comments]
-  
 
   def index    
+    
     if user_logged_in?
-      render json: Project.all, status: 200
+      #render json: Project.all, status: 200
+      render :json => Project.all.to_json( :include => [:likes] )
     else
       render json: {error: {message: "You must be loggedin"}}
     end
@@ -13,7 +14,7 @@ class Api::ProjectsController < ApplicationController
 
   def show
     if user_logged_in? && @project
-      render json: @project
+      render json: {name: @project.name, technology: @project.technology, description: @project.description, duration: @project.duration, likes: @project.likes}, status: 200
     else
       render json: {error: {message: "You must be loggedin"}}
     end
@@ -24,7 +25,7 @@ class Api::ProjectsController < ApplicationController
       project = Project.new(project_params)
       
       if project.save
-        render json: project, status: 200
+        render json: {name: project.name, technology: project.technology, description: project.description, duration: project.duration, num_of_likes: project.likes}, status: 200
       else
         render json: {message: project.errors}, status: 400
       end
@@ -44,13 +45,13 @@ class Api::ProjectsController < ApplicationController
   end
 
   def destroy
-    if user_logged_in? && current_user["id"] == @project.id
+    #if user_logged_in? && current_user["id"] == @project.id
       if @project.destroy
         render status: 204
       else
         render json: {message: "unable to process your request"}, status: 400
       end
-    end
+    #end
   end
 
   private

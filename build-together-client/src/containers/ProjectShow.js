@@ -24,6 +24,7 @@ class ProjectShow extends Component {
   handleOnDelete(event) {
     const { id } = this.props.match.params
       this.props.deletePost(id)
+
       this.props.history.replace('/projects')
   }
 

@@ -37,13 +37,13 @@ class ProjectForm extends Component {
 
   handleProjectSubmit(event) {
     event.preventDefault()
-    this.props.createProject(this.state)
+    this.props.createProject(this.state, this.props.history)
     
-    if(this.state.name !== ""){
-      this.props.history.push("/projects")
-    }else{
-      window.alert("sorry")
-    }
+    // if(this.state.name !== ""){
+    //   this.props.history.push("/projects")
+    // }else{
+    //   window.alert("sorry")
+    // }
 
   }
 
