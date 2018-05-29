@@ -63,4 +63,4 @@ const mapStateToProps = ({projects, auth}, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, { fetchProject, deletePost, loadComments, createComment })(ProjectShow);
+export default connect(mapStateToProps, { fetchProject, deletePost, createComment })(ProjectShow);

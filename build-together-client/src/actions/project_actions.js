@@ -17,13 +17,6 @@ const fetchProjectById = (project) => {
   }
 }
 
-const fetchComments = (comments) => {
-  return {
-    type: 'ADD_COMMENTS',
-    comments: comments
-  }
-}
-
 const fetchLikes = (like) => {
   return {
     type : 'ADD_LIKE',
@@ -150,22 +143,6 @@ export const deletePost = (id) => {
       payload: id
     }))
     .catch(error => console.log(error))
-  }
-}
-
-export const loadComments = (id) => {
-  return dispatch => {
-    fetch(`${API_URL}/projects/${id}/comments`, {
-      method: 'GET',
-      headers: {
-        'Authorization': localStorage.Token,
-        'Content-Type': 'application/json',
-      }
-    })
-    .then(res => res.json())
-    .then(response => {
-      dispatch(fetchComments(response))
-    })
   }
 }
 

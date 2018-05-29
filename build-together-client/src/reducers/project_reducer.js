@@ -1,6 +1,5 @@
 export default (state = {
-  projects: [],
-  comments: []
+  projects: []
 }, action) => {
   switch (action.type) {
     
@@ -32,13 +31,6 @@ export default (state = {
       return {
         ...state,
         projects: filteredProjects
-      }
-
-    case 'ADD_COMMENTS':
-
-      return {
-        ...state,
-        comments: action.comments
       }
     
     case 'CREATE_COMMENT':
