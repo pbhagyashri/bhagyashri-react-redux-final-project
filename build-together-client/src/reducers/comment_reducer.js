@@ -3,18 +3,17 @@ export default (state = {
 }, action) => {
   switch (action.type) {
   
-    case 'ADD_COMMENTS':
-
-      return {
-        ...state,
-        comments: action.comments
-      }
-    
     case 'CREATE_COMMENT':
     
       return {
         ...state,
         comments: state.comments.concat(action.payload)
+      }
+    case 'GET_COMMENTS':
+      
+      return {
+        ...state,
+        comments: action.payload
       }
 
     default: 

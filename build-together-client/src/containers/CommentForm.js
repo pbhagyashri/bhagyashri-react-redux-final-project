@@ -31,7 +31,7 @@ class CommentForm extends Component {
     
     this.setState({
       title: "",
-      description: "",
+      description: ""
     })
   }
 

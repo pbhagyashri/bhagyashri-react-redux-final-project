@@ -6,6 +6,6 @@ import comment_reducer from './comment_reducer';
 export const rootReducer = combineReducers({
   auth: auth_reducer,
   projects: project_reducer,
-  all_comments: comment_reducer
+  comments: comment_reducer
 });
 

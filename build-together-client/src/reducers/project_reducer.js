@@ -1,5 +1,6 @@
 export default (state = {
   projects: []
+
 }, action) => {
   switch (action.type) {
     
@@ -31,13 +32,6 @@ export default (state = {
       return {
         ...state,
         projects: filteredProjects
-      }
-    
-    case 'CREATE_COMMENT':
-      
-      return {
-        ...state,
-        comments: state.comments.concat(action.payload)
       }
     
     default: 

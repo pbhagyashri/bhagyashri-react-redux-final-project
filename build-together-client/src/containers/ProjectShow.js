@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route} from 'react-router-dom';
 import { connect } from 'react-redux';
 import ProjectShowpage from '../components/ProjectShowpage'
 import { Link } from 'react-router-dom'
-import { createComment } from '../actions/comment_actions'
-import { fetchProject, deletePost, loadComments } from '../actions/project_actions'
+import { fetchProject, deletePost } from '../actions/project_actions'
+
 
 import Comment from '../components/Comment'
 
@@ -16,7 +16,6 @@ class ProjectShow extends Component {
     const { id } = this.props.match.params
     if(!this.props.project){
       this.props.fetchProject(id)
-      // this.props.loadComments(id)
     }
   
   }
@@ -54,13 +53,11 @@ class ProjectShow extends Component {
   }
 }
 
-const mapStateToProps = ({projects, auth}, ownProps) => {
-  
+const mapStateToProps = ({auth, projects}, ownProps) => {
   return { 
     project: projects[ownProps.match.params.id],
-    user: auth.user,
-    comments: projects.comments
+    user: auth.user
   }
 }
 
-export default connect(mapStateToProps, { fetchProject, deletePost, createComment })(ProjectShow);
+export default connect(mapStateToProps, { fetchProject, deletePost })(ProjectShow);
