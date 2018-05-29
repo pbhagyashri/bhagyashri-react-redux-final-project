@@ -5,7 +5,6 @@ class Api::ProjectsController < ApplicationController
   def index    
     
     if user_logged_in?
-      #render json: Project.all, status: 200
       render :json => Project.all.to_json( :include => [:likes] )
     else
       render json: {error: {message: "You must be loggedin"}}
@@ -14,7 +13,7 @@ class Api::ProjectsController < ApplicationController
 
   def show
     if user_logged_in? && @project
-      render json: {name: @project.name, technology: @project.technology, description: @project.description, duration: @project.duration, likes: @project.likes}, status: 200
+      render json: @project.to_json( :include => [:comments] ), status: 200
     else
       render json: {error: {message: "You must be loggedin"}}
     end

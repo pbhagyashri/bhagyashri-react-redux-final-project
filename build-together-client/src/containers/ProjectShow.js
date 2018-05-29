@@ -16,7 +16,7 @@ class ProjectShow extends Component {
     const { id } = this.props.match.params
     if(!this.props.project){
       this.props.fetchProject(id)
-      this.props.loadComments(id)
+      // this.props.loadComments(id)
     }
   
   }
@@ -30,8 +30,8 @@ class ProjectShow extends Component {
 
   render() {
     
-    const { project, comments, user } = this.props
-    
+    const { project, user } = this.props
+  
     if (!project) {
       return <div>Loading...</div>
     }
@@ -40,17 +40,11 @@ class ProjectShow extends Component {
     <div>
       <div className="container-fluid create-project-container">
         <div className="row">
-          <ProjectShowpage project={project} currentUser={user} comments={comments}/>
+          <ProjectShowpage project={project} currentUser={user} />
           <div className="linkDiv">
               {user.id === project.user_id ? <Link key={project.id} to={`/projects/${project.id}/edit`} className="project-links">Edit Project</Link> : ""}
               
               {user.id === project.user_id ? <a href="#" onClick={(event) => this.handleOnDelete(event)} id="delete-button" className="project-links">Delete Project</a> : ""}        
-              <div className="comment-container">
-                <h3>Comments:</h3> 
-                {this.props.comments.map((comment, index) => comment.project_id === project.id ? 
-                < Comment comment={comment} key={comment.id}/>
-                : "")} 
-              </div>
             </div>  
         </div>
         <Route path="/projects/:id" component={CommentForm} />

@@ -1,9 +1,9 @@
 import React from 'react';
-
-const ProjectShowpage = ({project, currentUser, comments}) => {  
-
-  return(
+import Comment from '../components/Comment'
+const ProjectShowpage = ({project, currentUser}) => {  
   
+  return(
+    
     <div>
       <div>
         { project ?   
@@ -14,6 +14,12 @@ const ProjectShowpage = ({project, currentUser, comments}) => {
             <h6>Technologies: {project.technology}</h6>
             <h6>Duration: {project.duration}</h6>
             <p><a href={project.github_link} target="_blank" className="github-link">Github</a></p>
+
+            <div className="comment-container">
+              {project.comments.map(comment => 
+                <Comment comment={comment} />
+              )}
+            </div>
           </div>
         : <p>Loading...</p>}
       </div>
