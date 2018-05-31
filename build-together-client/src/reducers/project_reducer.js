@@ -33,9 +33,23 @@ export default (state = {
         ...state,
         projects: filteredProjects
       }
+
+    case 'ADD_LIKE':
+    
+    const updatedItems = state["projects"].map(item => {
+      if(item.id === action.payload.id) {
+        return {...item, ...action.payload}
+      }
+      return item
+    })
+  
+      return {
+        ...state,
+        projects: updatedItems
+      
+      }
     
     default: 
       return state
   }
 }
-

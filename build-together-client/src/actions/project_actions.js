@@ -158,7 +158,10 @@ export const addLike = (like) => {
     })
     .then(res => res.json())
     .then(json => {
-      dispatch(fetchProjects())
+      dispatch({
+        type: 'ADD_LIKE',
+        payload: json
+      })
     })
   }
 }

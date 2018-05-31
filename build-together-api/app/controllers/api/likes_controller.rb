@@ -6,7 +6,7 @@ class Api::LikesController < ApplicationController
     like = @project.likes.build(likes_params)
   
     if @project.save
-      render json: {id: @project.id, name: @project.name, technology: @project.technology, description: @project.description, duration: @project.duration, likes: @project.likes}, status: 200
+      render json: @project.to_json( :include => [:likes] )
     end
   end
 

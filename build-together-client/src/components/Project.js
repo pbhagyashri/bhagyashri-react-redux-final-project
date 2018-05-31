@@ -21,8 +21,10 @@ class Project extends Component {
             <p><a href={project.github_link} target="_blank">Github</a></p>
             <Link key={project.id} to={`/projects/${project.id}`}>Learn More</Link>
             
-            <div><Like project={project}/></div>
-            <div><h2>{project.likes.length}</h2></div>
+            <div>
+              <Like project={project}/>
+              <span className="counter">{project.likes.length}</span>
+            </div>
           </div>
         : <p>Loading...</p>}
       </div>

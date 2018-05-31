@@ -16,7 +16,6 @@ class Like extends Component {
       num_of_likes: 1,
       project_id: props.project.id
     }
-    
   }
 
   handleClick = () => {
