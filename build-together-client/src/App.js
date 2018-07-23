@@ -19,7 +19,7 @@ class App extends Component {
     super(props);
     
     this.state = { 
-      projects: []
+      //projects: []
     }
   }
 
@@ -64,7 +64,6 @@ const mapStateToProps = (state) => {
   return {  
     user: state.auth,
     authenticated: state.auth.authenticated,
-    // currentProject: state.projects[Object.getOwnPropertyNames(state.projects)[0]]
   }
 }
 

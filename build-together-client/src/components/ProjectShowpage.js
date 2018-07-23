@@ -14,11 +14,12 @@ const ProjectShowpage = ({project, currentUser}) => {
             <h6>Technologies: {project.technology}</h6>
             <h6>Duration: {project.duration}</h6>
             <p><a href={project.github_link} target="_blank" className="github-link">Github</a></p>
-
+          
             <div className="comment-container">
-              {project.comments.map(comment => 
+              
+              {project.comments ? project.comments.map(comment => 
                 <Comment comment={comment} />
-              )}
+              ) : ''}
             </div>
           </div>
         : <p>Loading...</p>}

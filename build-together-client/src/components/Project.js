@@ -7,7 +7,11 @@ class Project extends Component {
   render () {
     
     const {project} = this.props
-
+    let numLikes = 0
+    if(project.likes) {
+      numLikes = project.likes.length
+    }
+ 
     return(    
       <div className="col-md-4">
         { project ? 
@@ -23,7 +27,7 @@ class Project extends Component {
             
             <div>
               <Like project={project}/>
-              <span className="counter">{project.likes.length}</span>
+              <span className="counter">{numLikes}</span>
             </div>
           </div>
         : <p>Loading...</p>}
