@@ -3,7 +3,7 @@ import Comment from '../components/Comment'
 const ProjectShowpage = ({project, currentUser}) => {  
   
   return(
-    
+  
     <div>
       <div>
         { project ?   
@@ -18,7 +18,7 @@ const ProjectShowpage = ({project, currentUser}) => {
             <div className="comment-container">
               
               {project.comments ? project.comments.map(comment => 
-                <Comment comment={comment} />
+                <Comment comment={comment} key={comment.id}/>
               ) : ''}
             </div>
           </div>

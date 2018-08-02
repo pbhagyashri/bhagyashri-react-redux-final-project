@@ -10,7 +10,7 @@ export default (state = {
         comments: state.comments.concat(action.payload)
       }
     case 'GET_COMMENTS':
-      
+    debugger
       return {
         ...state,
         comments: action.payload

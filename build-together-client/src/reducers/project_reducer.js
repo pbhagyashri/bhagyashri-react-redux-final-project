@@ -29,6 +29,7 @@ export default (state = {
     case 'DELETE_PROJECT':
     
     const filteredProjects = state.projects.filter(project => project.id !== parseInt(action.payload))
+    
       return {
         ...state,
         projects: filteredProjects

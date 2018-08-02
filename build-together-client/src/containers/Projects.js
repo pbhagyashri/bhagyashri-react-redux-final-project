@@ -25,7 +25,7 @@ class Projects extends Component {
             <h2>Open Projects</h2>
             <div>
               { projects.projects.length > 0 ?
-                projects.projects.map((project, index) => <Project project={project} key={index} />) : <p>Not Found</p>
+                projects.projects.map((project) => <Project project={project} key={project.id} />) : <p>Not Found</p>
               }
             </div>
           </div>

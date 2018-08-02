@@ -147,6 +147,7 @@ export const deletePost = (id) => {
 }
 
 export const addLike = (like) => {
+
   return dispatch => {
     return  fetch(`${API_URL}/projects/${like.project_id}/likes`, {
       method: "Post",

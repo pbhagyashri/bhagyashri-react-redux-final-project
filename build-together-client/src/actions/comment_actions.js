@@ -3,7 +3,7 @@ import { fetchProject } from "./project_actions";
 const API_URL = "http://192.168.1.190:3001/api"
 
 export const createComment = (comment) => {
-  
+  debugger
   return dispatch => {
 
     return fetch(`${API_URL}/comments`, {
@@ -17,6 +17,7 @@ export const createComment = (comment) => {
     })
     .then(res => res.json())
     .then(response => {
+      debugger
       dispatch(fetchProject(response.project_id))
     })  
     .catch(err => console.log(err))

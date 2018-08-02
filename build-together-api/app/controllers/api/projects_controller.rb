@@ -46,6 +46,14 @@ class Api::ProjectsController < ApplicationController
   def destroy
     #if user_logged_in? && current_user["id"] == @project.id
       if @project.destroy
+      
+        if @project.comments
+          @project.comments.destroy_all
+        end
+        if @project.likes
+          @project.likes.destroy_all
+        end
+        
         render status: 204
       else
         render json: {message: "unable to process your request"}, status: 400
