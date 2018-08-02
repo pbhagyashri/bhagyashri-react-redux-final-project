@@ -1,6 +1,6 @@
-Build Together is a platform for developers to collaborate on projects and help each other build somethin amazing!
+Build Together is a platform for developers to collaborate on projects and help each other build something amazing!
 
-It has Ruby on Rails API backend. and React and Redux front end, and SqLite relational database persistance.
+It has Ruby on Rails API backend. and React and Redux front end, and SqLite relational database persistence.
 
 To get started,
 - Clone the repo. 
