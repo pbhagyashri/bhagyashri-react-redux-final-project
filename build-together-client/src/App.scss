@@ -1,77 +1,92 @@
-a, li {
-  color: #6985ac !important;
-  font-weight: 400; }
+$light_blue: #6985ac;
 
+a, li {
+  color: $light_blue !important;
+  font-weight: 400;
+}
 .header {
   height: 130px;
-  padding: 30px 20px; }
-
+  padding: 30px 20px;
+}
 #logo {
-  color: #6985ac;
+  color: $light_blue;
   font-family: 'Berkshire Swash', cursive;
-  font-size: 2.5em; }
-
+  font-size: 2.5em;
+}
 .App-title {
-  font-size: 1.5em; }
+  font-size: 1.5em;
+}
 
 .App-intro {
-  font-size: large; }
+  font-size: large;
+}
 
 .custom-container {
   padding: 15px;
-  text-align: left; }
+  text-align: left;
+}
 
 .custom-btn {
   margin-top: 10px;
   background-color: #1f170f;
   font-weight: 400;
-  color: #6985ac; }
+  color: $light_blue;
+}
 
 .custom-btn:hover {
   color: #1f170f;
   border: 2px solid #1f170f;
   border-radius: 9px;
-  background-color: transparent; }
+  background-color: transparent;
+}
 
 .logout-button {
   background-color: transparent;
   box-shadow: none;
-  border: none; }
+  border: none;
+}
 
 .navbar-links {
   display: inline-block;
   text-decoration: none;
   border-radius: 6px;
-  color: #6985ac;
+  color: $light_blue;
   margin-right: 18px;
-  margin-top: 30px; }
+  margin-top: 30px; 
+}
 
-.special-link {
-  background-color: #442c2c;
-  padding: 5px 7px; }
+.special-link{
+  background-color: rgb(68, 44, 44);
+  padding: 5px 7px;
+}
 
-.header-image {
-  width: 100%; }
+.header-image{
+  width: 100%;
+}
 
 .sub-titles {
   text-align: center;
   margin-top: 180px;
-  color: #6985ac; }
+  color: $light_blue;
+}
 
 .sub-titles h5 {
-  margin-top: 30px; }
+  margin-top: 30px;
+}
 
 .dash {
   width: 170px;
   height: 2px;
   margin: 10px;
-  background-color: #6985ac;
+  background-color: $light_blue;
   display: inline-block;
-  text-align: center; }
+  text-align: center;
+}
 
 .create-project-container {
-  background-color: #6985ac;
-  padding: 20px 20px 20px 40px; }
+  background-color: $light_blue;
+  padding: 20px 20px 20px 40px;
+}
 
 .project-card {
   display: inline-block;
@@ -80,47 +95,58 @@ a, li {
   height: 350px;
   margin-top: 5%;
   background-color: aliceblue;
-  border-radius: 0px 0px 20px 20px; }
+  border-radius: 0px 0px 20px 20px;
+}
 
 .project-card h3 {
   color: #1f170f;
   font-weight: bold;
-  font-size: 1.5em; }
+  font-size: 1.5em
+}
 
 #delete-button {
-  margin-bottom: 5%; }
+  margin-bottom: 5%; 
+}
 
 .project-links {
   margin-right: 10px;
   color: #1f170f !important;
-  font-weight: bold; }
+  font-weight: bold;
+}
 
 .comment-container {
   background-color: #dcc7aa;
   padding: 20px;
   margin-top: 20px;
-  border-radius: 10px; }
+  border-radius: 10px;
+}
 
 .comment-card {
   background-color: aliceblue;
   width: 40%;
   padding: 20px;
   margin-bottom: 10px;
-  border-radius: 15px; }
+  border-radius: 15px;
+}
 
 .comment-form {
-  margin-top: 20px; }
+  margin-top: 20px;
+}
 
 #footer {
   padding: 20px;
   height: 100px;
   background-color: #292828;
   color: #355177;
-  text-align: right;
-  font-size: 1em; }
+  text-align: right; 
+  font-size: 1em;
+}
 
 .github-link {
-  color: aliceblue !important; }
+  color: aliceblue !important;
+}
 
 .counter {
-  margin-left: 20px; }
+  margin-left: 20px;
+}
+
