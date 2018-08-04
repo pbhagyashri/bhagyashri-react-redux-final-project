@@ -1,4 +1,5 @@
 $light_blue: #6985ac;
+$gray: #1f170f;
 
 a, li {
   color: $light_blue !important;
@@ -28,14 +29,14 @@ a, li {
 
 .custom-btn {
   margin-top: 10px;
-  background-color: #1f170f;
+  background-color: $gray;
   font-weight: 400;
   color: $light_blue;
 }
 
 .custom-btn:hover {
-  color: #1f170f;
-  border: 2px solid #1f170f;
+  color: $gray;
+  border: 2px solid $gray;
   border-radius: 9px;
   background-color: transparent;
 }
@@ -137,7 +138,7 @@ a, li {
   padding: 20px;
   height: 100px;
   background-color: #292828;
-  color: #355177;
+  color: $light_blue;
   text-align: right; 
   font-size: 1em;
 }
