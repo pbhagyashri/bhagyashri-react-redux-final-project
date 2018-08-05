@@ -7,7 +7,7 @@ const ProjectShowpage = ({project, currentUser}) => {
     <div>
       <div>
         { project ?   
-          <div className="project-show-card">
+          <div>
             <h3>{project.name}</h3>
             <h4>By, {project.user_name}</h4>
             <p>{project.description}</p>

@@ -1,0 +1,71 @@
+
+.navbar-links {
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 6px;
+  color: $light_blue;
+  margin-right: 18px;
+  margin-top: 30px; 
+}
+
+.special-link{
+  background-color: rgb(68, 44, 44);
+  padding: 5px 7px;
+  margin-left: 16px;
+}
+
+.header-image{
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+
+.sub-titles {
+  text-align: center;
+  margin-top: 180px;
+  color: $light_blue;
+
+  .dash {
+    width: 170px;
+    height: 2px;
+    margin: 10px;
+    background-color: $light_blue;
+    display: inline-block;
+    text-align: center;
+  }
+
+  #logo {
+    color: $light_blue;
+    font-family: 'Berkshire Swash', cursive;
+    font-size: 2.5em;
+  }
+
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.custom-btn {
+  margin-top: 10px;
+  background-color: $gray;
+  font-weight: 400;
+  color: $light_blue;
+}
+
+.custom-btn:hover {
+  color: $gray;
+  border: 2px solid $gray;
+  border-radius: 9px;
+  background-color: transparent;
+}
+
+.logout-button {
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
+}

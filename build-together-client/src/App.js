@@ -12,6 +12,7 @@ import ProjectForm from './containers/ProjectForm';
 import ProjectShow from './containers/ProjectShow';
 import { getUser } from './actions/auth_actions';
 import ProjectEdit from './containers/ProjectEdit';
+import Footer from './components/Footer';
 
 class App extends Component {
 
@@ -50,6 +51,7 @@ class App extends Component {
               <Route exact path={"/projects/:id"} component={ProjectShow} />
               <Route exact path={"/projects/:id/edit"} component={ProjectEdit} />
               <Route exact path="/projects" component={Projects} projects={this.state.projects}/>
+              
             </header>  
           </div>
         </Router>

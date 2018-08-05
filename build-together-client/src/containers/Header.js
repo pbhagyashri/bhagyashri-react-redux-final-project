@@ -4,19 +4,20 @@ import { BrowserRouter as Router, Route} from 'react-router-dom';
 import { connect } from 'react-redux';
 import people from '../people.jpg'
 import Logout from './Logout'
+import Footer from '../components/Footer'
 
 class Header extends Component {
 
   render() {
     const LoggedOutnav = (
-      <div className="header-links"> 
+      <div> 
         <NavLink className="navbar-links" to="/login" exact>Login</NavLink>
         <NavLink className="navbar-links" to="/signup" exact>Signup</NavLink>       
       </div>
     )
 
     const loggedInNav = (
-      <div className="header-links">
+      <div>
         <div>
           <NavLink className="navbar-links special-link" to="/projects" exact>Check Out Open Projects</NavLink>
         </div>
@@ -32,7 +33,7 @@ class Header extends Component {
         <div className="row">
           
           <div className="col-md-8">
-            <img className="header-image" src={people} alt="header"/>
+            <img className="header-image" src={people} alt="header image of people fist bumping."/>
           </div>
           
           <div className="col-sm-4 sub-titles">
@@ -45,7 +46,6 @@ class Header extends Component {
           </div>
         
         </div>
-        <div id="element-to-scroll-to"></div>
       </div>
     )
   }
